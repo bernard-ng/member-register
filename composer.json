@@ -1,0 +1,27 @@
+{
+    "name": "bernard-ng/scs-member-register",
+    "description": "This application allow you to register and generate a pdf of yours members",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Bernard ng",
+            "email": "ngandubernard@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {
+            "Ng\\Core\\" : "src/Core",
+            "Scs\\" : "src/Scs"
+        }
+    },
+    "require": {
+        "endroid/qrcode": "^3.2",
+        "mikehaertl/phpwkhtmltopdf": "^2.3"
+
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^3.2"
+    }
+}

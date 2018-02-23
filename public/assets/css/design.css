@@ -1,0 +1,240 @@
+.default-bg{
+    background: url("../../images/banner-2.jpeg") rgba(0,0,0,0.85);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: right center;
+    background-attachment: fixed;
+    background-blend-mode: overlay;
+    position: absolute;
+    top: 0; bottom: 0; left: 0; right: 0;
+    width: 100%;
+    height: auto;
+    overflow: auto;
+}
+
+
+.leading-bg{
+    margin: 0;
+    padding: 15px;
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 0; bottom: 0; left: 0; right: 0;
+    background: url("../../images/banner.jpg") rgba(0,0,0,0.85);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    background-blend-mode: overlay;
+    color: #ccc;
+    overflow: hidden !important;
+    text-align: center;
+}
+
+.hero-titles {
+   width: 600px;
+   min-height: 300px;
+   padding: 20px;
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translateX(-50%) translateY(-50%);
+   background: rgba(255,255,255,0.1);
+   border-radius: 3px;
+   box-shadow: 0 0 20px #000;
+   border: 2px outset transparent;
+   border-top-color: #428bca;
+   animation: change-color 10s linear infinite;
+}
+
+.hero-titles-no-animated {
+    width: 600px;
+    min-height: 300px;
+    padding: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    background: rgba(255,255,255,0.1);
+    border-radius: 3px;
+    box-shadow: 0 0 20px #000;
+    border: 2px outset transparent;
+    border-top-color: #428bca;
+}
+
+@keyframes change-color {
+    from {
+        filter: hue-rotate(0deg);
+    }
+
+    to {
+        filter: hue-rotate(359deg);
+    }
+}
+
+.hero-titles a{
+    color: #fff !important;
+}
+
+.hero-title-sub {
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    font-family: arial;
+    font-size: 14px;
+    font-weight: 100;
+    padding-bottom: -15px !important;
+    position: relative;
+    margin-top: -5px;
+    margin-bottom: -10px;
+}
+
+.hero-title-main {
+    text-transform: capitalize;
+    font-size: 48px;
+    font-family: motion;
+    line-height: 40px;
+    font-weight: 100 !important;
+    padding-top: -15px !important;
+    text-shadow: 1px 1px 1px #272626;
+}
+
+.hero-title-main-2 {
+    text-transform: uppercase !important;
+    text-shadow: 1px 1px 1px #272626;
+    font-size: 1.25em;
+    font-family: OpenSans;
+    line-height: 40px;
+    font-weight: 100 !important;
+    padding-top: -15px !important;
+    text-align: left !important;
+    margin-bottom: 10px !important;
+}
+
+.hero-title-main:first-letter {
+    color: #428bca !important;
+    font-weight: 400 !important;
+}
+
+.second{
+    display: block;
+}
+.second:first-letter {
+    color: #428bca;
+    font-weight: 400 !important;
+} 
+
+
+.leading-footer {
+    width: 100%;
+    height: 60px;
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    padding-top: 15px;
+    color: #ccc;
+}
+
+.leading-footer-slide {
+    background: #3a72ae;
+    width: 100%;
+    height: 25px;
+    position: fixed;
+    bottom: 0; right: 10; left: 300px;
+    float: right;
+    font-size: small;
+    color: #ccc;
+    padding-top: 3px;
+    padding-left: 15px;
+    padding-bottom: 5px;
+}
+
+
+.leading-header {
+    width: 100%;
+    height: 50px;
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    color: #ccc !important;
+    padding-top: 15px;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.leading-header div.center {
+    font-family: motion !important;
+    font-weight: 100;
+    font-size: 3.75em;
+    text-transform: lowercase;
+}
+
+.leading-header div.center div.second::first-letter,div.center::first-letter {
+    color: #428bca !important;
+}
+
+.leading-header div.center div.second {
+    display: inline !important;
+}
+
+
+.leading-header a {
+    color: #ccc;
+}
+
+
+#loginBox, #signUpBox{
+  
+    background-color:rgba(255,255,255,0.1);
+    border-top: 2px inset #428bca;
+    border-radius:3px;
+    padding:25px !important;
+    color:#fff
+}
+    
+#loginBox a.forgot,
+#signUpBox a.forgot {
+    color:#cecece;
+    float:right !important
+}
+
+#loginBox a.forgot:hover,#signUpBox a.forgot:hover{
+    text-decoration:underline
+}
+
+#loginBox label,#signUpBox label{
+    color:#cecece
+}
+
+#loginBox input,#signUpBox input{
+    font-family: openSans , sans-serif;
+    color:#fff !important;
+    background-color: rgba(255,255,255,.1);
+    box-shadow: inset 1px 1px 5px #000;
+}
+
+
+/*****************************************************************************
+    les boutons
+********************************************************************************/
+
+.submit-btn-full {
+    border-radius: 3px;
+    padding: 20px;
+    height: 35px !important; 
+    background: #3a72ae !important;
+    color: #ccc;
+    border: none;
+    font-weight: 100;
+    font-family: openSans, sans-serif;
+
+}
+
+.qrcode-btn{
+    border-radius: 3px;
+    padding: 20px;
+    height: 45px !important; 
+    line-height: 45px;
+    background: rgba(255,255,255,0.1) !important;
+    color: #ccc;
+    border: none;
+    font-weight: 100;
+}

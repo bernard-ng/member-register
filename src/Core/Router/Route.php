@@ -1,7 +1,7 @@
 <?php
 namespace Ng\Core\Router;
 
-use Ngpictures\Ngpictures;
+use Scs\Scs;
 
 class Route
 {
@@ -49,9 +49,9 @@ class Route
     {
         if (is_string($this->controller)) {
             $url = explode("#", $this->controller);
-            $controller = Ngpictures::getInstance()->getController($url[0]);
+            $controller = Scs::getInstance()->getController($url[0]);
             $action = $url[1] ?? 'index';
-            
+
             return call_user_func_array([$controller, $action], $this->matches);
         }
         return call_user_func_array($this->controller, $this->matches);

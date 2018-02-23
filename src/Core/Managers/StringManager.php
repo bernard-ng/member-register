@@ -50,7 +50,7 @@ class StringManager
         $removed = preg_replace("#Ù|Ú|Û|Ü|ù|ú|û|ü#", "u", $removed);
         $removed = preg_replace("#Ý|ý|ÿ#", "y", $removed);
         $removed = preg_replace("#Ñ|ñ#", "n", $removed);
-    
+
         $formated = trim($removed);
         if (preg_match("/[ ]+/", $formated)) {
             $formated = implode(explode(" ", $formated), "_");
@@ -182,7 +182,7 @@ class StringManager
         setlocale(LC_TIME, 'fr');
         $time = self::escape(strtotime($time));
         $time = time() - $time ;
-        
+
         switch ($time) {
             case $time >= 3600 && $time <= 86400:
                 $ago = intval($time / 3600);
@@ -201,7 +201,8 @@ class StringManager
 
             case $time > 604800:
                 $days = substr(strftime('%d', $time), 0, 3);
-                $date = (date("Y") == strftime("Y", $time))? ucfirst(strftime('%B', $time)) : ucfirst(strftime('%B', $time));
+                $date = (date("Y") == strftime("Y", $time))?
+                    ucfirst(strftime('%B', $time)) : ucfirst(strftime('%B', $time));
                 $relative_time = "{$days} {$date}";
                 break;
 
@@ -237,7 +238,7 @@ class StringManager
                 $number = round(($number / 100000), 1);
                 return "{$number}M";
                 break;
-            
+
             default:
                 return $number;
                 break;
