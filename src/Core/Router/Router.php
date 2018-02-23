@@ -3,7 +3,7 @@
 namespace Ng\Core\Router;
 
 use Ng\Core\Exception\RouterException;
-use Ngpictures\Ngpictures;
+use Scs\Scs;
 
 class Router
 {
@@ -23,7 +23,7 @@ class Router
      * @param mixed $controller
      * @param string $name
      * @param string $method
-     * @return Route 
+     * @return Route
      */
     private function add(string $path, $controller, string $name = null, string $method): Route
     {
@@ -61,7 +61,7 @@ class Router
                 return true;
             }
         }
-        (Ngpictures::hasDebug())? var_dump($route) : Ngpictures::redirect("/error-404");
+        var_dump($route);
         return false;
     }
 
@@ -69,7 +69,7 @@ class Router
     private function url(string $name, array $params = [])
     {
         if (!isset($this->namedRoute[$name])) {
-            Ngpictures::redirect("/error-404");
+            Scs::redirect("/error");
         }
         return $this->namedRoute[$name]->getUrl($params);
     }

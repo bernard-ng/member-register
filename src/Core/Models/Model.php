@@ -61,7 +61,7 @@ class Model
     ) {
         $class = ($class === true)? str_replace("Model", "Entity", get_class($this)) : false;
         $class = str_replace("Entitys", "Entity", $class);
-        
+
         if ($data === null) {
             return $this->db->query($statement, $class, $one, $rowCount);
         } else {
@@ -88,7 +88,7 @@ class Model
 
         $sql = implode(', ', $array_sql);
         $array_data[] = $id;
-        
+
         return $this->query("UPDATE {$this->table} SET $sql WHERE id = ? ", $array_data);
     }
 
@@ -109,7 +109,7 @@ class Model
         }
 
         $sql = implode(', ', $array_sql);
-        return $this->query("INSERT INTO {$this->table} SET $sql , date_created = NOW() ", $array_data);
+        return $this->query("INSERT INTO {$this->table} SET $sql , date_created = NOW()", $array_data);
     }
 
 
@@ -208,8 +208,8 @@ class Model
     {
         return $this->query(
             "
-            SELECT {$this->table}.*, categories.title as category 
-            FROM {$this->table} 
+            SELECT {$this->table}.*, categories.title as category
+            FROM {$this->table}
             LEFT JOIN categories ON category_id = categories.id
             WHERE online = 1 ORDER BY id DESC LIMIT {$from},{$to}",
             null,
@@ -227,8 +227,8 @@ class Model
     {
         return $this->query(
             "
-            SELECT {$this->table}.*, categories.title as category 
-            FROM {$this->table} 
+            SELECT {$this->table}.*, categories.title as category
+            FROM {$this->table}
             LEFT JOIN categories ON category_id = categories.id
             WHERE online = 1 ORDER BY id DESC",
             null,
@@ -246,8 +246,8 @@ class Model
     {
         return $this->query(
             "
-            SELECT {$this->table}.*, categories.title as category 
-            FROM {$this->table} 
+            SELECT {$this->table}.*, categories.title as category
+            FROM {$this->table}
             LEFT JOIN categories ON category_id = categories.id
             WHERE online = 1 ORDER BY id DESC ",
             null,
@@ -261,8 +261,8 @@ class Model
     {
         return $this->query(
             "
-            SELECT {$this->table}.*, categories.title as category 
-            FROM {$this->table} 
+            SELECT {$this->table}.*, categories.title as category
+            FROM {$this->table}
             LEFT JOIN categories ON category_id = categories.id
             WHERE online = 0 ORDER BY id DESC ",
             null,

@@ -18,8 +18,9 @@ class MembersController extends Controller
     public function index()
     {
         $members = $this->members->all();
+
         $this->setLayout("default");
-        $this->viewRender("register", compact("members"));
+        $this->viewRender("base/register", compact("members"));
     }
 
 
@@ -29,21 +30,25 @@ class MembersController extends Controller
         $infos = new Collection($_POST);
 
         if (isset($_POST) && !empty($_POST)) {
-            $this->validator->isEmpty("name");
-            $this->validator->isEmpty("second_name");
-            $this->validator->isEmpty("type");
+            $this->validator->isEmpty("nom", "tous les champs doivent être remplis");
+            $this->validator->isEmpty("second_nom", "tous les champs doivent être remplis");
+            $this->validator->isEmpty("type", "tous les champs doivent être remplis");
 
             if ($this->validator->isValid()) {
-                $this->members->add(compact("name", "second_name", "type"));
+                $nom = $infos->get('nom');
+                $second_nom = $infos->get('second_nom');
+                $type = $infos->get('type');
+
+                $this->members->create(compact("nom", "second_nom", "type"));
                 $this->flash->set("success", "Ajout effectué");
-                $this->app::redirect(true);
+                $this->app::redirect("/");
             } else {
                 $this->flash->set("danger", "Complétez tous les champs");
             }
         }
 
         $this->setLayout("form");
-        $this->viewRender("add", compact("infos"));
+        $this->viewRender("base/add", compact("infos"));
     }
 
 
@@ -51,21 +56,21 @@ class MembersController extends Controller
     public function edit(int $id)
     {
         if ($this->members->find(intval($id))) {
-            $user = $this->members->find(intval($id));
+            $member = $this->members->find(intval($id));
             $infos = new Collection($_POST);
 
             if (isset($_POST) && !empty($_POST)) {
-                $name = $infos->get("name") ?? $user->name;
-                $second_name = $infos->get("second_name") ?? $user->name;
-                $type = $infos->get("type") ?? $user->type;
+                $nom = $infos->get("nom") ?? $member->nom;
+                $second_nom = $infos->get("second_nom") ?? $member->nom;
+                $type = $infos->get("type") ?? $member->type;
 
-                $this->members->edit($user->id, compact("name", "second_name", "type"));
+                $this->members->update($member->id, compact("nom", "second_nom", "type"));
                 $this->flash->set("success", "Edition effectuée");
-                $this->app::redirect(true);
+                $this->app::redirect("/");
             }
 
             $this->setLayout("form");
-            $this->viewRender("edit", compact("infos"));
+            $this->viewRender("base/edit", compact("infos", "member"));
         } else {
             $this->flash->set("danger", "Le Membre que vous souhaitez editer n'existe pas ou plus");
             $this->app::redirect(true);
@@ -74,14 +79,26 @@ class MembersController extends Controller
 
 
     /* suppression d'un membre */
-    public function delete(int $id)
+    public function delete()
     {
-        if ($this->members->find(intval($id))) {
-            $this->members->delete(intval($id));
-            $this->flash("success", "Le Membre a bien été supprimer");
-            $this->app::redirect(true);
+        if (isset($_POST) && !empty($_POST)) {
+            if (isset($_POST['id']) && !empty($_POST['id'])) {
+                $id = intval($_POST['id']);
+
+                if ($this->members->find($id)) {
+                    $this->members->delete($id);
+                    $this->flash->set("success", "Le Membre a bien été supprimer");
+                    $this->app::redirect(true);
+                } else {
+                    $this->flash->set("danger", "Le Membre que vous souhaitez supprimer n'existe pas ou plus");
+                    $this->app::redirect(true);
+                }
+            } else {
+                $this->flash->set("danger", "Une erreur est survenue lors de la suppression");
+                $this->app::redirect(true);
+            }
         } else {
-            $this->flash->set("danger", "Le Membre que vous souhaitez supprimer n'existe pas ou plus");
+            $this->flash->set("danger", "Une erreur est survenue lors de la suppression");
             $this->app::redirect(true);
         }
     }

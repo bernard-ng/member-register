@@ -27,7 +27,6 @@ class FlashMessageManager
     public function set(string $type, string $message)
     {
         $_SESSION[FLASH_MESSAGE_KEY][$type] = $message;
-        LogMessageManager::register(__CLASS__, $message);
     }
 
 

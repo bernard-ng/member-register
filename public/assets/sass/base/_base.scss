@@ -1,0 +1,27 @@
+@import "../theme/_variables.scss";
+body {
+	font-family: openSans, sans-serif;
+	font-size: 14px;
+	line-height: 20px;
+	overflow-x: hidden;
+	background: $color-bg;
+	-webkit-transition: $transition;
+	-o-transition: $transition;
+	transition: $transition;
+	color: #4e4e4e;
+}
+
+a {
+	cursor: pointer !important;
+	color: $color-active;
+}
+
+::-moz-selection{
+	background: $color-2;
+	color: #fff;
+}
+
+::selection{
+	background: $color-2;
+	color: #fff;
+}
