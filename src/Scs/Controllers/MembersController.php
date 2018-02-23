@@ -42,7 +42,6 @@ class MembersController extends Controller
             }
         }
 
-        $this->pageManager("Ajout d'informations");
         $this->setLayout("form");
         $this->viewRender("add", compact("infos"));
     }
@@ -65,7 +64,6 @@ class MembersController extends Controller
                 $this->app::redirect(true);
             }
 
-            $this->pageManager::setName("Edition d'informations");
             $this->setLayout("form");
             $this->viewRender("edit", compact("infos"));
         } else {

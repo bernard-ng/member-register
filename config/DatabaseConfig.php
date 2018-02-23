@@ -1,7 +1,7 @@
 <?php
 return [
     "db" => [
-        "name" => "scs-members",
+        "name" => "scs",
         "host" => "localhost",
         "user" => "root",
         "pass" => ""
