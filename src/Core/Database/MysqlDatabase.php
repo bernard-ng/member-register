@@ -138,7 +138,7 @@ class MysqlDatabase extends Database
             }
             return $result;
         } catch (Exception $e) {
-           die("PrepareException : {$e->getMessage()}");
+            die("PrepareException : {$e->getMessage()}");
         }
     }
 

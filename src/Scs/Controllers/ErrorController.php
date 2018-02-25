@@ -1,5 +1,6 @@
 <?php
 namespace Scs\Controllers;
+
 use Scs\Scs;
 
 /*

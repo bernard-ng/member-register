@@ -12,7 +12,7 @@
                     </a>
                     <ul class="right hide-on-med-and-down links">
                         <li class="left">
-                            <form action="/search" method="get">
+                            <form action="/search" method="post">
                                 <input class="default-form" type="search" placeholder="recherche..." name="q" id="q">
                                 <button class="btn" type="submit" ><i class="icon icon-search"></i></button>
                             </form>

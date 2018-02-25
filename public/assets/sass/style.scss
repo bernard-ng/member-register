@@ -7113,6 +7113,44 @@ html {
     /*shape-rendering: crispEdges;*/
   }
 
+  li.search {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50px;
+    margin-top: 1px;
+    padding: 1px 0 0 0;
+    z-index: 2;
+}
+
+.search-wrapper {
+    margin: 0 12px;
+    -webkit-transition: all .3s ease;
+    -o-transition: all .3s ease;
+    transition: all .3s ease;
+}
+
+.search-wrapper i {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.input#search {
+    display: block;
+    font-size: 16px;
+    font-weight: 300;
+    width: 100%;
+    height: 45px;
+    margin: 0;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    padding: 0 45px 0 15px;
+    border: 0;
+}
+
+
 
 @import "base/_animations.scss";
 @import "base/_fonts.scss";
@@ -7130,3 +7168,20 @@ html {
 @import "state/_states.scss";
 @import "theme/_variables.scss";
 @import "theme/_colors.scss";
+
+body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  min-height: 100vh;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+main {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 0 auto;
+          flex: 1 0 auto;
+}
