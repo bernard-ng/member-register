@@ -15,6 +15,9 @@ $router->get("/search", "Search#index", "search.index");
 $router->post("/search", "Search#index", "search.index");
 $router->get("/search/:query", "Search#alternate", "search.alternate");
 
+//PDF
+$router->get("/pdf-card/:id", "pdf#index", "pdf.index");
+
 
 //ERROR
 $router->get("/error", "Error", "error.index");

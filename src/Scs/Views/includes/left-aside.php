@@ -1,5 +1,5 @@
 <div class="col l3 no-padding hide-on-med-and-down">
-    <div class="card ">
+    <div class="card">
         <div class="card-image">
             <img src="/images/banner-qr.png">
         </div>

@@ -2,8 +2,9 @@
 namespace Scs\Controllers;
 
 use Scs\Scs;
-
 use Ng\Core\Managers\Collection;
+use Endroid\QrCode\QrCode;
+use Endroid\QrCode\LabelAlignment;
 
 class MembersController extends Controller
 {
@@ -41,6 +42,19 @@ class MembersController extends Controller
                 $type = $infos->get('type');
 
                 $this->members->create(compact("nom", "second_nom", "type"));
+
+                $qrCode = new QrCode("{$nom} {$second_nom} : {$type}");
+                $qrCode->setWriterByName('png');
+                $qrCode->setSize(400);
+                $qrCode->setLabel(
+                    'SCS',
+                    18,
+                    WEBROOT."/assets/fonts/mrsmonster.ttf",
+                    LabelAlignment::CENTER
+                );
+                $qrCode->setValidateResult(true);
+                $qrCode->writeFile(WEBROOT."/qrcodes/{$this->members->lastInsertId()}.png");
+
                 $this->flash->set("success", "Ajout effectué");
                 $this->app::redirect("/");
             } else {
@@ -66,6 +80,20 @@ class MembersController extends Controller
                 $type = $infos->get("type") ?? $member->type;
 
                 $this->members->update($member->id, compact("nom", "second_nom", "type"));
+
+                $qrCode = new QrCode("{$nom} {$second_nom} : {$type}");
+                $qrCode->setWriterByName('png');
+                $qrCode->setSize(400);
+                $qrCode->setLabel(
+                    'SCS',
+                    18,
+                    WEBROOT."/assets/fonts/mrsmonster.ttf",
+                    LabelAlignment::CENTER
+                );
+                $qrCode->setValidateResult(true);
+                $qrCode->writeFile(WEBROOT."/qrcodes/{$member->id}.png");
+
+
                 $this->flash->set("success", "Edition effectuée");
                 $this->app::redirect("/");
             }

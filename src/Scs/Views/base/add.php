@@ -5,7 +5,6 @@
             <nav class="nav z-depth-2">
                 <div class="nav-wrapper">
                 <ul>
-                    <li><a href="/qrcodes-generator"><i class="icon icon-qrcode"></i></a></li>
                     <li><a href="/pdf-generator/"><i class="icon icon-print"></i></a></li>
                     <li class="right"><a href="/settings"><i class="icon icon-cog"></i></a></li>
                 </ul>

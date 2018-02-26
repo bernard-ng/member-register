@@ -1,11 +1,25 @@
 <main class="container row">
-    <?php include(APP."/Views/includes/left-aside.php"); ?>
+
+    <div class="col l3 no-padding hide-on-med-and-down">
+        <div class="card ">
+            <div class="card-image">
+                <img src="<?= $member->qrcodeUrl ?>">
+            </div>
+            <div class="ng-contain">
+                <section class="description">
+                    <blockquote>
+                        Developped by <a href="http://ngpictures.pe.he" target="_blank">Bernard Ng</a>
+                    </blockquote>
+                </section>
+            </div>
+        </div>
+    </div>
+
     <section class="col l9 m12 s12">
         <div class="card-panel no-padding">
             <nav class="nav z-depth-2">
                 <div class="nav-wrapper">
                 <ul>
-                    <li><a href="/qrcodes-generator"><i class="icon icon-qrcode"></i></a></li>
                     <li><a href="/pdf-generator/"><i class="icon icon-print"></i></a></li>
                     <li class="right"><a href="/settings"><i class="icon icon-cog"></i></a></li>
                 </ul>

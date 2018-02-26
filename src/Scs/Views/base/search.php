@@ -1,10 +1,10 @@
-<div class="container row" style="margin-top: 94px;">
+<div class="container row" style="margin-top: 64px;">
 <h3 class="section-title">Résultat pour : <?= $query ?> <span class="badge new"><?= count($results ?? []); ?></span></h3>
 <hr style="background-color: #ccc">
 
 
 <?php if (isset($results) && !empty($results)) : ?>
-    <?php foreach($results as $result): ?>
+    <?php foreach ($results as $result) : ?>
         <div class="col s12 m3">
             <div class="card primary-b" style="text-align: center; color: #ccc;">
                 <div class="card-content">
@@ -15,9 +15,11 @@
                     <?= $result->description; ?>
                 </div>
                 <div class="card-action">
-                    <a href="<?= "/edit/{$result->id}" ?>">Edit</a>
-                    <a href="<?= $result->printUrl ?>">Imprimer</a>
-                    <a href="<?= $result->qrcodeUrl ?>">Qrcode</a>
+                <center>
+                    <a href="<?= $result->editUrl ?>"><i class="icon icon-edit"></i></a>
+                    <a href="<?= $result->printUrl ?>"><i class="icon icon-print"></i></a>
+                    <a href="<?= $result->qrcodeUrl ?>" class="zoombox"><i class="icon icon-qrcode"></i></a>
+                </center>
                 </div>
             </div>
         </div>

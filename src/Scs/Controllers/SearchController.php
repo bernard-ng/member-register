@@ -16,7 +16,6 @@ class SearchController extends Controller
     public function index()
     {
         if (isset($_POST['q']) && !empty($_POST['q'])) {
-
             $this->loadModel('members');
             $query = addcslashes(htmlentities($_POST['q']), "'?=-");
             $results = $this->members->search($query, "begin");
