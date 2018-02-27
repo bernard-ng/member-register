@@ -32,33 +32,35 @@ class MembersController extends Controller
         $infos = new Collection($_POST);
 
         if (isset($_POST) && !empty($_POST)) {
-            $this->validator->isEmpty("nom", "tous les champs doivent être remplis");
-            $this->validator->isEmpty("second_nom", "tous les champs doivent être remplis");
-            $this->validator->isEmpty("type", "tous les champs doivent être remplis");
+            if (isset($_POST['nom'], $_POST['second_nom'], $_POST['type'], $_POST['description'])  &&
+            !empty($_POST['nom']) && !empty($_POST['second_nom']) && !empty($_POST['type']) && !empty($_POST['description']))
+            {
+                $this->validator->isEmpty('nom', 'tous les champs doivent être complétés');
+                if ($this->validator->isValid()) {
+                    $nom = $this->str::escape($infos->get('nom'));
+                    $second_nom = $this->str::escape($infos->get('second_nom'));
+                    $type = $this->str::escape($infos->get('type'));
+                    $description = $this->str::escape($infos->get('description')) ?? null;
 
-            if ($this->validator->isValid()) {
-                $nom = $infos->get('nom');
-                $second_nom = $infos->get('second_nom');
-                $type = $infos->get('type');
+                    $this->members->create(compact("nom", "second_nom","description", "type"));
 
-                $this->members->create(compact("nom", "second_nom", "type"));
+                    $qrCode = new QrCode("{$nom} {$second_nom} : {$type} \n\n {$description}");
+                    $qrCode->setWriterByName('png');
+                    $qrCode->setSize(400);
+                    $qrCode->setLabel(
+                        'SCS',
+                        18,
+                        WEBROOT."/assets/fonts/mrsmonster.ttf",
+                        LabelAlignment::CENTER
+                    );
+                    $qrCode->setValidateResult(true);
+                    $qrCode->writeFile(WEBROOT."/qrcodes/{$this->members->lastInsertId()}.png");
 
-                $qrCode = new QrCode("{$nom} {$second_nom} : {$type}");
-                $qrCode->setWriterByName('png');
-                $qrCode->setSize(400);
-                $qrCode->setLabel(
-                    'SCS',
-                    18,
-                    WEBROOT."/assets/fonts/mrsmonster.ttf",
-                    LabelAlignment::CENTER
-                );
-                $qrCode->setValidateResult(true);
-                $qrCode->writeFile(WEBROOT."/qrcodes/{$this->members->lastInsertId()}.png");
-
-                $this->flash->set("success", "Ajout effectué");
-                $this->app::redirect("/");
-            } else {
-                $this->flash->set("danger", "Complétez tous les champs");
+                    $this->flash->set("success", "Ajout effectué");
+                    $this->app::redirect("/");
+                } else {
+                    $this->flash->set("danger", "Complétez tous les champs");
+                }
             }
         }
 
@@ -75,11 +77,12 @@ class MembersController extends Controller
             $infos = new Collection($_POST);
 
             if (isset($_POST) && !empty($_POST)) {
-                $nom = $infos->get("nom") ?? $member->nom;
-                $second_nom = $infos->get("second_nom") ?? $member->nom;
-                $type = $infos->get("type") ?? $member->type;
+                $nom = $this->str::escape($infos->get("nom")) ?? $member->nom;
+                $second_nom = $this->str::escape($infos->get("second_nom")) ?? $member->nom;
+                $type = $this->str::escape($infos->get("type")) ?? $member->type;
+                $description = $this->str::escape($infos->get('description')) ?? $member->description;
 
-                $this->members->update($member->id, compact("nom", "second_nom", "type"));
+                $this->members->update($member->id, compact("nom", "second_nom","description", "type"));
 
                 $qrCode = new QrCode("{$nom} {$second_nom} : {$type}");
                 $qrCode->setWriterByName('png');

@@ -2,6 +2,7 @@
 namespace Scs\Entity;
 
 use Ng\Core\Entity\Entity;
+use Ng\Core\Managers\StringManager;
 
 class MembersEntity extends Entity
 {
@@ -21,5 +22,11 @@ class MembersEntity extends Entity
     {
         $this->editUrl = "/edit/{$this->id}";
         return $this->editUrl;
+    }
+
+    public function getShortDesc()
+    {
+        $this->shortDesc = StringManager::truncateText($this->description, 155);
+        return $this->shortDesc;
     }
 }

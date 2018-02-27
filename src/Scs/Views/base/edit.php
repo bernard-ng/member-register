@@ -33,21 +33,22 @@
             <form action="" method="POST" class="ml-10 mr-10 mb-30">
                 <div class="col s6">
                     <label for="nom">Nom</label>
-                    <input type="text" id="nom" name="nom" placeholder="nom" value="<?= $member->nom ?>">
+                    <input type="text" id="nom" name="nom" placeholder="nom" value="<?= $member->nom ?>" data-length="150">
                 </div>
 
                 <div class="col s6">
                     <label for="second_nom">Second Nom</label>
-                    <input type="text"  id="second_nom" name="second_nom" placeholder="second nom" value="<?= $member->second_nom ?>" >
+                    <input type="text"  id="second_nom" name="second_nom" placeholder="second nom" value="<?= $member->second_nom ?>" data-length="150">
                 </div>
 
                 <div class="col s12">
                     <label for="type">Type</label>
-                    <input type="text" id="type" name="type" placeholder="type" value="<?= $member->type ?>" >
+                    <input type="text" id="type" name="type" placeholder="type" value="<?= $member->type ?>" data-length="150">
                 </div>
 
                 <div class="input-field col l12 m12 s12">
-                    <textarea id="content" name="description" placeholder="description"><?= $member->description ?></textarea>
+                    <label for="description">Description</label>
+                    <textarea name="description" id="Description" placeholder="description" class="materialize-textarea" data-length="200"><?= $member->description ?></textarea>
                 </div>
 
                 <div class="col s12">

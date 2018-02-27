@@ -6,7 +6,7 @@
     </div>
     <div class="scs-metas">
         <div class="scs-metas__desc">
-            <?= $member->description ?>
+            <?= $member->shortDesc ?>
             <div class="scs-metas__date"><?= date("d - m - y",strtotime($member->date_created)) ?></div>
         </div>
     </div>

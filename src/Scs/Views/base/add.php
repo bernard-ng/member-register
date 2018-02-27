@@ -17,19 +17,20 @@
 
             <form action="" method="POST" class="ml-10 mr-10 mb-30">
                 <div class="col s6">
-                    <input type="text" name="nom" placeholder="nom" value="<?= $infos->get('nom') ?>">
+                    <input type="text" name="nom" placeholder="nom" value="<?= htmlspecialchars($infos->get('nom')) ?>" data-length="150">
                 </div>
 
                 <div class="col s6">
-                    <input type="text" name="second_nom" placeholder="second nom" value="<?= $infos->get('second_nom') ?>" >
+                    <input type="text" name="second_nom" placeholder="second nom" value="<?= htmlspecialchars($infos->get('second_nom')) ?>" data-length="150">
                 </div>
 
                 <div class="col s12">
-                    <input type="text" name="type" placeholder="type" value="<?= $infos->get('type') ?>" >
+                    <input type="text" name="type" placeholder="type" value="<?= htmlspecialchars($infos->get('type')) ?>" data-length="150">
                 </div>
 
                 <div class="input-field col l12 m12 s12">
-                    <textarea id="content" name="description" placeholder="description"><?= $infos->get('description') ?></textarea>
+                    <label for="description"></label>
+                    <textarea id="description" name="description" placeholder="description" class="materialize-textarea" data-length="200"><?= htmlspecialchars($infos->get('description')) ?></textarea>
                 </div>
 
                 <div class="col s12">

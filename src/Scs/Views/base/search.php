@@ -12,12 +12,12 @@
                         <?= "{$result->nom} {$result->second_nom}" ?>
                     </span>
                     <div style="margin-top: -13px;"><?= "({$result->type})" ?></div>
-                    <?= $result->description; ?>
+                    <?= $result->shortDesc; ?>
                 </div>
                 <div class="card-action">
                 <center>
                     <a href="<?= $result->editUrl ?>"><i class="icon icon-edit"></i></a>
-                    <a href="<?= $result->printUrl ?>"><i class="icon icon-print"></i></a>
+                    <a href="<?= $result->pdfUrl ?>"><i class="icon icon-print"></i></a>
                     <a href="<?= $result->qrcodeUrl ?>" class="zoombox"><i class="icon icon-qrcode"></i></a>
                 </center>
                 </div>

@@ -65,12 +65,12 @@ class StringManager
      * @param int $maxChar
      * @return string
      */
-    public static function truncateText(string $text, int $maxChar = 155): string
+    public static function truncateText(?string $text , int $maxChar = 155): ?string
     {
         if (strlen($text) > $maxChar) {
              $text = substr($text, 0, $maxChar);
              $text = substr($text, 0, strrpos($text, " "));
-             $truncated =  $text."[...]";
+             $truncated =  $text."...";
         } else {
              $truncated = $text;
         }

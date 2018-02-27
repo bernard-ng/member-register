@@ -22,7 +22,7 @@
                                 <?= "{$members[$i]->nom} {$members[$i]->second_nom}" ?>
                             </span>
                             <div style="margin-top: -13px;"><?= "({$members[$i]->type})" ?></div>
-                            <?= $members[$i]->description; ?>
+                            <?= $members[$i]->shortDesc; ?>
                         </div>
                         <div class="card-action">
                         <center>
