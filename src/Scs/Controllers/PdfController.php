@@ -21,7 +21,6 @@ class PdfController extends Controller
         $member = $this->loadModel('members')->find(intval($id));
 
         if ($member) {
-
             $this->setLayout("pdf");
 
                 ob_start();
@@ -32,16 +31,15 @@ class PdfController extends Controller
                 $pdf->setOptions(["user-style-sheet" => WEBROOT."/assets/css/pdf.css"]);
                 $pdf->addPage($content);
                 $pdf->saveAs(WEBROOT."/pdf/{$member->id}.pdf");
-                if (!$pdf->saveAs(WEBROOT."/pdf/{$member->id}.pdf")) {
-                    echo $pdf->getError();
-                }
+            if (!$pdf->saveAs(WEBROOT."/pdf/{$member->id}.pdf")) {
+                echo $pdf->getError();
+            }
 
                 $pdf->send();
         } else {
             $this->flash->set("danger", "Membre non trouvé");
             $this->app::redirect("/");
         }
-
     }
 
 
@@ -94,5 +92,4 @@ class PdfController extends Controller
             $this->app::redirect(true);
         }
     }
-
 }

@@ -33,8 +33,7 @@ class MembersController extends Controller
 
         if (isset($_POST) && !empty($_POST)) {
             if (isset($_POST['nom'], $_POST['second_nom'], $_POST['type'], $_POST['description'])  &&
-            !empty($_POST['nom']) && !empty($_POST['second_nom']) && !empty($_POST['type']) && !empty($_POST['description']))
-            {
+            !empty($_POST['nom']) && !empty($_POST['second_nom']) && !empty($_POST['type']) && !empty($_POST['description'])) {
                 $this->validator->isEmpty('nom', 'tous les champs doivent être complétés');
                 if ($this->validator->isValid()) {
                     $nom = $this->str::escape($infos->get('nom'));
@@ -42,7 +41,7 @@ class MembersController extends Controller
                     $type = $this->str::escape($infos->get('type'));
                     $description = $this->str::escape($infos->get('description')) ?? null;
 
-                    $this->members->create(compact("nom", "second_nom","description", "type"));
+                    $this->members->create(compact("nom", "second_nom", "description", "type"));
 
                     $qrCode = new QrCode("{$nom} {$second_nom} : {$type} \n\n {$description}");
                     $qrCode->setWriterByName('png');
@@ -82,7 +81,7 @@ class MembersController extends Controller
                 $type = $this->str::escape($infos->get("type")) ?? $member->type;
                 $description = $this->str::escape($infos->get('description')) ?? $member->description;
 
-                $this->members->update($member->id, compact("nom", "second_nom","description", "type"));
+                $this->members->update($member->id, compact("nom", "second_nom", "description", "type"));
 
                 $qrCode = new QrCode("{$nom} {$second_nom} : {$type}");
                 $qrCode->setWriterByName('png');

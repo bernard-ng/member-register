@@ -33,9 +33,9 @@
                         <tr>
                             <td><b><?= $files->key(); ?></b></td>
                             <td>
-                               <?php if ($file->key() !== 0 && $file->key() !== 1) : ?>
-                               <?= "{$member->find(intval($file->getBasename()))->nom} {$member->find(intval($file->getBasename()))->second_nom}" ?>
-                               <?php endif; ?>
+                                <?php if ($file->key() !== 0 && $file->key() !== 1) : ?>
+                                <?= "{$member->find(intval($file->getBasename()))->nom} {$member->find(intval($file->getBasename()))->second_nom}" ?>
+                                <?php endif; ?>
                             </td>
 
                             <td><?= $file->getBasename(); ?></td>

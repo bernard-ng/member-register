@@ -64,7 +64,7 @@
                             <td><?= $member->nom ?></td>
                             <td><?= $member->second_nom ?></td>
                             <td><?= $member->type ?></td>
-                            <td><?= date("d M-Y",strtotime($member->date_created)) ?></td>
+                            <td><?= date("d M-Y", strtotime($member->date_created)) ?></td>
                             <td>
                                 <form method="POST" action="<?= "/delete" ?>" style="display: inline-block !important;">
                                     <input type="hidden" name="id" value="<?= $member->id?>" >
