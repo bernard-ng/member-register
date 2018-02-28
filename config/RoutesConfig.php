@@ -17,6 +17,8 @@ $router->get("/search/:query", "Search#alternate", "search.alternate");
 
 //PDF
 $router->get("/pdf-card/:id", "pdf#index", "pdf.index");
+$router->get("/pdf-generator", "pdf#generator", "pdf.generator");
+$router->post("/pdf-delete", "pdf#delete", "pdf.delete");
 
 
 //ERROR

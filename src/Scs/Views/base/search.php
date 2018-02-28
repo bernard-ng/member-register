@@ -12,6 +12,7 @@
                         <?= "{$result->nom} {$result->second_nom}" ?>
                     </span>
                     <div style="margin-top: -13px;"><?= "({$result->type})" ?></div>
+                    <br>
                     <?= $result->shortDesc; ?>
                 </div>
                 <div class="card-action">

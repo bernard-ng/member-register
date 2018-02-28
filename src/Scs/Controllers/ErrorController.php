@@ -21,6 +21,6 @@ class ErrorController extends Controller
     public function index()
     {
         $this->setLayout("error");
-        $this->viewRender("error");
+        $this->viewRender("base/error");
     }
 }

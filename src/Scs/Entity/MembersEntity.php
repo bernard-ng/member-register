@@ -26,7 +26,7 @@ class MembersEntity extends Entity
 
     public function getShortDesc()
     {
-        $this->shortDesc = StringManager::truncateText($this->description, 155);
+        $this->shortDesc = StringManager::truncateText($this->description, 150);
         return $this->shortDesc;
     }
 }

@@ -6,13 +6,16 @@
                 <div class="nav-wrapper">
                 <ul>
                     <li><a href="/pdf-generator/"><i class="icon icon-print"></i></a></li>
-                    <li class="right"><a href="/settings"><i class="icon icon-cog"></i></a></li>
+                    <li class="right disabled"><a href="#" id="off"><i class="icon icon-cog"></i></a></li>
                 </ul>
                 </div>
             </nav>
         </div>
 
         <div class="card-panel col s12 m12" style="margin-top: -3px;">
+        <div class="section-title mb-10 mt-20 ml-10">
+                Les Derniers membres
+        </div>
         <?php for ($i = 0; $i < 8; $i++) : ?>
             <?php if (array_key_exists($i, $members)) : ?>
                 <div class="col s12 m3">
@@ -22,7 +25,6 @@
                                 <?= "{$members[$i]->nom} {$members[$i]->second_nom}" ?>
                             </span>
                             <div style="margin-top: -13px;"><?= "({$members[$i]->type})" ?></div>
-                            <?= $members[$i]->shortDesc; ?>
                         </div>
                         <div class="card-action">
                         <center>
@@ -50,6 +52,7 @@
                         <th>nom</th>
                         <th>second_nom</th>
                         <th>type</th>
+                        <th>date</th>
                         <th>actions</th>
                     </tr>
                 </thead>
@@ -61,6 +64,7 @@
                             <td><?= $member->nom ?></td>
                             <td><?= $member->second_nom ?></td>
                             <td><?= $member->type ?></td>
+                            <td><?= date("d M-Y",strtotime($member->date_created)) ?></td>
                             <td>
                                 <form method="POST" action="<?= "/delete" ?>" style="display: inline-block !important;">
                                     <input type="hidden" name="id" value="<?= $member->id?>" >
