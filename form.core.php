@@ -46,3 +46,32 @@ function getMsg($key)
         return "Ce champ a été mal complété";
     }
 }
+
+
+/**
+ * HTML form helper
+ *
+ * @param string $name
+ * @param string $label
+ * @param array $params
+ * @return string
+ */
+function input($name, $label, $params = [])
+{
+    $type = isset($params['t']) ? $params['t'] : 'text';
+    $class = isset($params['c']) ? $params['c'] : 'l6 m6 s12';
+    $error = isset($params['e']) ? $params['e'] : '';
+    $value = htmlspecialchars(isset($params['v']) ? $params['v'] : '');
+
+    $form = <<< FORM
+<div class="input-field col {$class}">
+    <label for="{$name}">{$label}</label>
+    <input type="{$type}" name="{$name}" id="{$name}" value="{$value}">
+    <span class="helper-text red-text">
+        {$error}
+    </span>
+</div>
+FORM;
+
+    return $form;
+}
