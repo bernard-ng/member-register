@@ -23,29 +23,39 @@ $db = new PDO("mysql:Host={$db_host};dbname={$db_name};charset=utf8", $db_user, 
 
 
 // Message de validation d'information
-$errorMsg = [
-    'required' => 'Ce champ est obligatoire'
+$flashMsg = [
+    'registration_success' => 'Vos informations ont ...',
+    'registration_failed' => 'Oups, une erreur',
+    'registration_existe' => 'Ces informations ont été déjà enregistrées',
+    'login' => 'Vous êtes maintenant connecté',
+    'logout' => 'vous êtes maintent déconnecté',
+
+    'delete_success' => 'Suppression effectuée',
+    'delete_failed' => 'Echec de la suppression',
+    'update_success' => 'Données mises à jour',
+    'update_failed' => 'Echec de la mise à jour',
+    'search_failed' => 'Aucun enregistrement ne correspond à votre recherche'
 ];
 
-
-// définition des fonctions importantes
 
 /**
  * get a msg in the messages array thanks
  * to a key
  *
  * @param string $key
- * @return string
+ * @return string|null
  */
 function getMsg($key)
 {
     global $errorMsg;
     if (array_key_exists($key, $errorMsg)) {
         return $errorMsg[$key];
-    } else {
-        return "Ce champ a été mal complété";
-    }
+    } 
+    return null;
 }
+
+
+// définition des fonctions importantes
 
 
 /**
@@ -167,4 +177,54 @@ function update($data, $table)
 function delete($id)
 {
     query("DELETE FROM {$this->table} WHERE id = ?", [$id]);
+}
+
+
+// Defintion des fonction pour le traitement du formulaire
+
+/**
+ * whether data are posted
+ *
+ * @return boolean
+ */
+function isPosted()
+{
+    return isset($_POST) && !empty($_POST);
+}
+
+
+// Definition des fonction pour les message flash
+
+
+/**
+ * set a flash in the session
+ *
+ * @param string $type
+ * @param string $message
+ * @return void
+ */
+function setFlash($type, $message)
+{
+    $_SESSION['flash'][$type] = $message;
+}
+
+
+/**
+ * whether the session has flashes
+ *
+ * @return boolean
+ */
+function hasFlashes()
+{
+    return array_key_exists('flash', $_SESSION);
+}
+
+
+/**
+ * unset a flashes in the session
+ *
+ * @return void
+ */
+function unsetFlash() {
+    unset($_SESSION['flash']);
 }
