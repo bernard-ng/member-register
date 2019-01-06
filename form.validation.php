@@ -61,6 +61,13 @@ $childrenValidationRules = [
 ];
 
 
+// Validation rules for login process
+$loginDataValidationRules = [
+    'nom'       => v::notEmpty()->setName('nom'),
+    'password'  => v::notEmpty()->min(4)->setName("Password")
+];
+
+
 $messages = [
 
 ];

@@ -85,9 +85,9 @@ switch ($selectedForm) {
     break;
 }
 
+$errors = [];
 
 if ($selectedForm) {
-  $errors = [];
   if (isPosted()) {
     $v = (new Validator(false))->validate($_POST, $rules);
 
