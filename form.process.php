@@ -18,7 +18,9 @@ require_once("form.validation.php");
 function e ($key) {
   global $errors;
   if (array_key_exists($key, $errors)) {
-    return $errors[$key];
+    return htmlspecialchars(
+      (is_array($errors[$key])) ? implode(", ", $errors[$key]) : $errors[$key]
+    );
   }
   return null;
 };
@@ -50,7 +52,6 @@ function input($name, $label, $class = 'l6 m6 s12', $type = 'text')
 {
     $error = e($name);
     $value = v($name);
-    $error = htmlspecialchars((is_array($error)) ? implode(", ", $error) : $error);
     $validate = (empty($error)) ? (empty($value))? '' : 'valid' : 'invalid'  ;
 
     $input = <<< INPUT

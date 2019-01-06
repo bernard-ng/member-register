@@ -108,18 +108,7 @@
                   <?= input('telephone2', 'Téléphone (2)'); ?>
                   <?= input('email', 'Adresse Email', 's12', 'email') ?>
                   
-                  <div class="col l12 m12 s12">
-                    <label for="sexe">* sexe</label>
-                    <select name="sexe">
-                        <option disabled="disabled" selected="selected">choisissez votre sexe</option>
-                        <option value="M"><span>M</span></option>
-                        <option value="F"><span>F</span></option>
-                    </select>
-                    <span class="helper-text red-txt">
-                      <?= e('sexe') ?>
-                    </span>
-                  </div>
-
+                  <?= input('sexe', '* sexe (M ou F)', 's12 r') ?>
                   <?= input('lieuNaissance', '* Lieu de naissance', 'm6 s12 r'); ?>
                   <?= input('dateNaissance', '* Date de naissance', 'm6 s12 r'); ?>
 
@@ -189,8 +178,10 @@
 
                 <div class="input-field col s12">
                     <label for="remarque">Remarque</label>
-                    <textarea name="remarque" id="remarque" class="materialize-textarea"></textarea>
-                    <span class="helper-text red-txt"></span>
+                    <textarea name="remarque" id="remarque" class="materialize-textarea"><?= v('remarque'); ?></textarea>
+                    <span class="helper-text red-text">
+                      <?= e('remarque'); ?>
+                    </span>
                 </div>
               </div>
 

@@ -12,6 +12,7 @@ $membersDataValidationRules = [
     'postnom'           => v::notEmpty()->setName('Le postenom'),
     'telephone1'        => v::optional(v::phone())->setName('Le Téléphone1'),
     'telephone2'        => v::optional(v::phone())->setName('Le Téléphone2'),
+    'sexe'              => v::notEmpty()->setName('Le sexe'),
     'email'             => v::optional(v::email())->setName('L\'Email'),
     'lieuNaissance'     => v::notEmpty()->notBlank()->setName('Le lieu de naissance'),
     'dateNaissance'     => v::notEmpty()->date()->setName('La date de naissance'),
@@ -42,7 +43,8 @@ $membersDataValidationRules = [
 $childrenValidationRules = [
     'matricule'         => $membersDataValidationRules['matricule'],
     'numeroCarte'       => $membersDataValidationRules['numeroCarte'],
-    'nomsPere'          => v::notEmpty()->notBlank(),
+    'nomsPere'          => v::notEmpty()->setName('Noms du père'),
+    'nomsMere'          => v::notEmpty()->setName('Noms de la Mère'),
     'nom'               => $membersDataValidationRules['nom'],
     'prenom'            => $membersDataValidationRules['prenom'],
     'postnom'           => $membersDataValidationRules['postnom'],
@@ -55,7 +57,7 @@ $childrenValidationRules = [
     'classe'            => v::optional(v::notBlank())->setName('classe'),
     'activiteEcole'     => v::optional(v::notBlank())->setName('activités à l\'école'),
     'activiteEglise'    => v::optional(v::notBlank())->setName('activités à l\'église'),
-    'remarque'          => v::notEmpty()
+    'remarque'          => v::notEmpty()->setName('la remarque')
 ];
 
 
