@@ -14,6 +14,8 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 
+$isLogged = true;
+
 // Connexion à la base de donnée
 $db = new PDO("mysql:Host={$db_host};dbname={$db_name};charset=utf8", $db_user, $db_password, [
     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
