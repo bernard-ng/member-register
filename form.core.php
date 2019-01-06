@@ -47,50 +47,15 @@ $flashMsg = [
  */
 function getMsg($key)
 {
-    global $errorMsg;
-    if (array_key_exists($key, $errorMsg)) {
-        return $errorMsg[$key];
+    global $flashMsg;
+    if (array_key_exists($key, $flashMsg)) {
+        return $flashMsg[$key];
     } 
     return null;
 }
 
 
 // définition des fonctions importantes
-
-
-/**
- * HTML form helper
- *
- * @param string $name
- * @param string $label
- * @param array $params
- * @return string
- */
-function input($name, $label, $params = [])
-{
-    $type = isset($params['t']) ? $params['t'] : 'text';
-    $class = isset($params['c']) ? $params['c'] : 'l6 m6 s12';
-    $error = isset($params['e']) ? $params['e'] : '';
-    $value = htmlspecialchars(isset($params['v']) ? $params['v'] : '');
-
-    $form = <<< FORM
-<div class="input-field col {$class}">
-    <label for="{$name}">{$label}</label>
-    <input type="{$type}" name="{$name}" id="{$name}" value="{$value}">
-    <span class="helper-text red-text">
-        {$error}
-    </span>
-</div>
-FORM;
-
-    return $form;
-}
-
-
-
-
-// Database and data functions
-
 
 /**
  * make a query to the database
