@@ -1,10 +1,10 @@
 <?php
-  require_once("form.core.php");
+  require_once("../src/form.core.php");
 
   $query = isset($_GET['q']) ? htmlspecialchars($_GET['q']) : false;
   $results = [];
 ?>
-<?php include("inc/menu.php"); ?>
+<?php include("../src/inc/menu.php"); ?>
 <div class="container row" style="margin-top: 64px;">
   <a href="form.dashboard.php" class="btn blue darken-4">Liste</a>
 
@@ -66,4 +66,4 @@
     <?php endif; ?>
   <?php endif; ?>
 </div>
-<?php include("inc/footer.php"); ?>
+<?php include("../src/inc/footer.php"); ?>

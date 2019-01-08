@@ -1,9 +1,9 @@
 <?php
-require_once("form.core.php");
-require_once("form.process.php");
+require_once("../src/form.core.php");
+require_once("../src/form.process.php");
 
 ?>
-<?php include("inc/menu.php"); ?>
+<?php include("../src/inc/menu.php"); ?>
 <div class="card-panel row" style="max-width: 500px; margin: 0 auto;">
   <h3 class="ui header">formulaire de connexion</h3>
   <form action="" method="post">
@@ -18,4 +18,4 @@ require_once("form.process.php");
   </form>
 </div>
 </div>
-<?php include("inc/footer.php"); ?>
+<?php include("../src/inc/footer.php"); ?>

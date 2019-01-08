@@ -1,10 +1,10 @@
 <?php
-require_once("form.core.php");
+require_once("../src/form.core.php");
 $list = isset($_GET['list']) ? htmlspecialchars($_GET['list']) : false;
 $results = [];
 
 ?>
-<?php include('inc/menu.php'); ?> 
+<?php include('../src/inc/menu.php'); ?> 
 <section class="row">
   <a href="form.search.php?q=" class="btn blue darken-4">rechercher</a>
   
@@ -170,4 +170,4 @@ $results = [];
     <?php endif; ?>
   <?php endif; ?>
 </section>
-<?php include('inc/footer.php'); ?>
+<?php include('../src/inc/footer.php'); ?>

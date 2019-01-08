@@ -2,7 +2,7 @@
 
 use Awurth\SlimValidation\Validator;
 
-require_once("vendor/autoload.php");
+require_once("../vendor/autoload.php");
 require_once("form.core.php");
 require_once("form.validation.php");
 

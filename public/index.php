@@ -1,5 +1,6 @@
-<?php require_once('form.process.php'); ?>
-<?php include("inc/menu.php"); ?>
+<?php require_once('../src/form.process.php'); ?>
+<?php include("../src/inc/menu.php"); ?>
+
 <?php if ($selectedForm): ?>
   <div style="margin-bottom: 20px;">
     <a href="?type=" class="btn blue darken-4 white-text">Choix du formulaire</a>
@@ -29,6 +30,18 @@
           <input type="hidden" name="type" value="member">
           <div class="row">
             <fieldset>
+
+            <div class="file-field input-field col s12">
+              <span class="btn blue-grey darken-1 waves-effect waves-light col s4 m4 l4" style="display: inline-block;">
+                  <span>Choisier une Photo</span>
+                  <input type="file" name="image">
+              </span>
+              <span class="file-path-wrapper col s8 l8 m8" style="display: inline-block;" >
+                  <input class="file-path" placeholder="..." type="text">
+              </span>
+              <div data-action="show-uploaded-file"></div>
+            </div>
+
               <?= input('matricule', '* Matricule', 'm6 s12 r'); ?>
               <?= input('numeroCarte', '* N<sup>o</sup> carte de Membre', 'm6 s12 r'); ?>
               <?= input('prenom', '* Prénom membre', 'm4 s12 r'); ?>
@@ -86,6 +99,18 @@
         <form action="" method="post" id="child">
           <input type="hidden" name="type" value="child">
           <div class="row">
+
+            <div class="file-field input-field col s12">
+              <span class="btn blue-grey darken-1 waves-effect waves-light col s4 m4 l4" style="display: inline-block;">
+                  <span>Choisier une Photo</span>
+                  <input type="file" name="image">
+              </span>
+              <span class="file-path-wrapper col s8 l8 m8" style="display: inline-block;" >
+                  <input class="file-path" placeholder="..." type="text">
+              </span>
+              <div data-action="show-uploaded-file"></div>
+            </div>
+
             <?= input('matricule', 'Matricule du père'); ?>
             <?= input('numeroCarte', 'N<sup>0</sup> Carte de membre'); ?>
             <?= input('nomsPere', 'Nom / Prénom / Postnom du Père', 's12'); ?>
@@ -125,4 +150,4 @@
     <?php endif; ?>
   </div>
 <?php endif; ?>
-<?php include("inc/footer.php"); ?>
+<?php include("../src/inc/footer.php"); ?>
