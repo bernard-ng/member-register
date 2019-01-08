@@ -83,7 +83,7 @@
           </form>
         </li>
         <li>&nbsp;</li>
-        <li><a href="form.php">Formulaires</a></li>
+        <li><a href="index.php">Formulaires</a></li>
         <li><a href="form.dashboard.php">Lists</a></li>
         <li><a href="form.login.php?action=logout">Déconnexion</a></li>
       </ul>
