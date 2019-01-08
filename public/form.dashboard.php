@@ -6,8 +6,6 @@ $results = [];
 ?>
 <?php include('../src/inc/menu.php'); ?> 
 <section class="row">
-  <a href="form.search.php?q=" class="btn blue darken-4">rechercher</a>
-  
   <?php if(!$list): ?>
     <div class="row card-panel">
       <h3 class="ui header">Liste des Membres</h3>
