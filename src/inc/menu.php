@@ -87,6 +87,10 @@
         <li><a href="form.dashboard.php">Lists</a></li>
         <li><a href="form.login.php?action=logout">Déconnexion</a></li>
       </ul>
+      <?php else : ?>
+        <ul class="right hide-on-med-and-down links">
+          <li><a href="form.login.php?action=logout">Connexion</a></li>
+        </ul>
       <?php endif; ?>
     </div>
   </nav>
