@@ -72,22 +72,21 @@ INPUT;
 // Selection du formulaire et definition de la table d'enregistrement
 $selectedForm = (isset($_GET['type'])) ? strval($_GET['type']) : false;
 $selectedFormType = ($selectedForm) ? "des {$selectedForm}s" : '';
-
-switch ($selectedForm) {
-  case 'membre':
-    $tableName = 'id_members';
-    $rules = $membersDataValidationRules;
-    break;
-
-  case 'enfant':
-    $tableName = 'id_children';
-    $rules = $childrenValidationRules;
-    break;
-}
-
 $errors = [];
 
 if ($selectedForm) {
+  switch ($selectedForm) {
+    case 'membre':
+      $tableName = 'id_members';
+      $rules = $membersDataValidationRules;
+      break;
+  
+    case 'enfant':
+      $tableName = 'id_children';
+      $rules = $childrenValidationRules;
+      break;
+  }
+
   if (isPosted()) {
     $v = (new Validator(false))->validate($_POST, $rules);
 
@@ -97,5 +96,52 @@ if ($selectedForm) {
       $errors = $v->getErrors();
       setFlash('error', getMsg('registration_failed'));
     }
+  }
+}
+
+
+
+// Action to process and predefined action
+$action = (isset($_GET['action'])) ? strval($_GET['action']) : false;
+$actions = [
+  'login',
+  'logout',
+  'search',
+  'delete',
+  'update'
+];
+
+
+if ($action && in_array($action, $actions)) {
+  switch ($action) {
+    case 'login' :
+      $v = (new Validator(false))->validate($_POST, $loginDataValidationRules);
+      
+      if ($v->isValid()) {
+        $name = strval($_POST['nom']);
+        $password = strval($_POST['password']);
+        $isAuthentified = checkAuth($_POST['nom'], $_POST['password']);
+
+        if ($isAuthentified) {
+          $_SESSION['isLogged'] = compact('name', 'password');
+          setFlash('success', getMsg('login_success'));
+          redirect('dashboard');
+        }
+
+        $errors = [
+          'nom' => 'Identifiant incorrecte',
+          'password' => 'Identifiant incorrecte'
+        ];
+        setFlash('error', getMsg('login_failed'));
+      } else {
+        $errors = $v->getErrors();
+        setFlash('error', getMsg('login_failed'));
+      }
+    break;
+
+    case 'logout' :
+      unset($_SESSION['isLogged']);
+      redirect('login');
+      break;
   }
 }

@@ -6,7 +6,7 @@ require_once("../src/form.process.php");
 <?php include("../src/inc/menu.php"); ?>
 <div class="card-panel row" style="max-width: 500px; margin: 0 auto;">
   <h3 class="ui header">formulaire de connexion</h3>
-  <form action="" method="post">
+  <form action="?action=login" method="post">
     <?= input('nom', 'Nom', 's12'); ?>
     <?= input('password', 'Mot de passe', 's12', 'password'); ?>
 

@@ -6,8 +6,6 @@
 ?>
 <?php include("../src/inc/menu.php"); ?>
 <div class="container row" style="margin-top: 64px;">
-  <a href="form.dashboard.php" class="btn blue darken-4">Liste</a>
-
   <?php if(!$query): ?>
     <div class="card-panel">
       <h3 class="ui header">formulaire de recherche</h3>
@@ -30,7 +28,7 @@
   <?php if($query): ?>
     <div class="row col s12">
       <h1 class="ui header">Résultat pour : <?= $query ?></h1>
-      <a href="?q=" class="btn blue darken-4">rechercher</a>
+      <a href="?q=" class="btn blue darken-4">Nouvelle recherche</a>
     </div>
     <?php if (isset($results) && !empty($results)) : ?>
       <?php foreach ($results as $result) : ?>

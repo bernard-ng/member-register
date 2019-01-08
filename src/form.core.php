@@ -15,7 +15,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
 
 // Si un administrateur est connecté
-$isLogged = isset($_SESSION['isLogged']) ? boolval($_SESSION['isLogged']) : false;
+$isLogged = isset($_SESSION['isLogged']) ? $_SESSION['isLogged'] : false;
 
 
 // Connexion à la base de donnée
@@ -31,7 +31,8 @@ $flashMsg = [
     'registration_success' => 'Vos informations ont ...',
     'registration_failed' => 'Oups, une erreur',
     'registration_existe' => 'Ces informations ont été déjà enregistrées',
-    'login' => 'Vous êtes maintenant connecté',
+    'login_success' => 'Vous êtes maintenant connecté',
+    'login_failed' => 'Une erreur est survenue lors de la tentive de connexion',
     'logout' => 'vous êtes maintent déconnecté',
 
     'delete_success' => 'Suppression effectuée',
@@ -56,6 +57,19 @@ function getMsg($key)
         return $flashMsg[$key];
     } 
     return null;
+}
+
+
+
+/**
+ * redirect to a view file
+ *
+ * @param string $file
+ * @return void
+ */
+function redirect($file) {
+    header("Location: form.{$file}.php");
+    exit();
 }
 
 
@@ -120,4 +134,25 @@ function loggedOnly() {
     if (!$isLogged) {
         header("location: form.login.php");
     }
+}
+
+
+/**
+ * check if login are correct
+ *
+ * @param string $name
+ * @param string $password
+ * @return bool
+ */
+function checkAuth($name, $password)
+{
+    $logins = require('auth/logins.php');
+
+    if (in_array($name, $logins['name'])) {
+       if (password_verify($password, $logins['password'][$name])) {
+           return true;
+       }
+       return false;
+    }
+    return false;
 }
