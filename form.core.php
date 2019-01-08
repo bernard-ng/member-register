@@ -14,7 +14,9 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 
-$isLogged = true;
+// Si un administrateur est connecté
+$isLogged = isset($_SESSION['isLogged']) ? boolval($_SESSION['isLogged']) : false;
+
 
 // Connexion à la base de donnée
 $db = new PDO("mysql:Host={$db_host};dbname={$db_name};charset=utf8", $db_user, $db_password, [
@@ -194,4 +196,18 @@ function hasFlashes()
  */
 function unsetFlash() {
     unset($_SESSION['flash']);
+}
+
+
+/**
+ * redirecte if the user is not 
+ * connected
+ *
+ * @return void
+ */
+function loggedOnly() {
+    global $isLogged;
+    if (!$isLogged) {
+        header("location: form.login.php");
+    }
 }
