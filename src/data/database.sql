@@ -1,6 +1,6 @@
 CREATE TABLE `members`( 
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT , 
-  `marticule` VARCHAR(255) NOT NULL ,
+  `matricule` VARCHAR(255) NOT NULL ,
   `numeroCarte` INT NOT NULL , 
   `prenom` VARCHAR (30) NOT NULL , 
   `nom` VARCHAR(30) NOT NULL , 
@@ -36,11 +36,12 @@ CREATE TABLE `members`(
 
 CREATE TABLE `children`( 
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT , 
-  `marticule` VARCHAR(255) NOT NULL , 
+  `matricule` VARCHAR(255) NOT NULL , 
   `numeroCarte` INT NOT NULL , 
   `nomsPere` VARCHAR (90) NOT NULL , 
   `nomsMere` VARCHAR(90) NOT NULL ,
   `nom` VARCHAR(30) NOT NULL, 
+  `prenom` VARCHAR(30) NOT NULL,
   `postnom` VARCHAR(30) NOT NULL , 
   `lieuNaissance` VARCHAR(255) NOT NULL , 
   `dateNaissance` DATE NOT NULL , 
