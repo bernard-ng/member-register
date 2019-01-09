@@ -39,7 +39,10 @@ $flashMsg = [
     'delete_failed' => 'Echec de la suppression',
     'update_success' => 'Données mises à jour',
     'update_failed' => 'Echec de la mise à jour',
-    'search_failed' => 'Aucun enregistrement ne correspond à votre recherche'
+    'search_failed' => 'Aucun enregistrement ne correspond à votre recherche',
+    'image_upload_failed' => "Votre photo n'a pu être téléchargée, veuillez vérifier
+    que c'est bien une image, qu'elle pèse moins de 15mo, si cela se repoduit, 
+    essayez avec une autre photo."
 ];
 
 
@@ -67,7 +70,11 @@ function getMsg($key)
  * @param string $file
  * @return void
  */
-function redirect($file) {
+function redirect($file = '') {
+    if (empty($file)) {
+        header("Location: index.php");
+        exit();
+    }
     header("Location: form.{$file}.php");
     exit();
 }
@@ -132,7 +139,7 @@ function unsetFlash() {
 function loggedOnly() {
     global $isLogged;
     if (!$isLogged) {
-        header("location: form.login.php");
+        redirect("login");
     }
 }
 

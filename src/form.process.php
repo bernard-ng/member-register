@@ -77,21 +77,51 @@ $errors = [];
 if ($selectedForm) {
   switch ($selectedForm) {
     case 'membre':
-      $tableName = 'id_members';
+      $table = 'members';
       $rules = $membersDataValidationRules;
       break;
   
     case 'enfant':
-      $tableName = 'id_children';
+      $table = 'children';
       $rules = $childrenValidationRules;
       break;
   }
 
   if (isPosted()) {
+    global $db;
+    require_once("form.image.php");
+    require_once("form.database.php");
+
     $v = (new Validator(false))->validate($_POST, $rules);
 
     if ($v->isValid()) {
-      die('ok');
+
+      $data = function($post) {
+        $data = [];
+        foreach($post as $k => $v) {
+          $data[$k] = (empty($v)) ? null : htmlspecialchars(strval($v));
+        }
+        return $data;
+      };
+
+      create($data($_POST), $table);
+      $id = $db->lastInsertId();
+
+      if (isset($_FILES['image']['name']) && !empty($_FILES['image']['name'])) {
+        $isUploaded = upload($_FILES['image'], $table, $id);
+
+        if ($isUploaded) {
+          update(['imageUrl' => "images/{$table}/{$id}.jpg"], $id, $table);
+          setFlash('success', getMsg('registration_success'));
+          redirect();
+        } else {
+          delete($id, $table);
+          $errors = ['image' => getMsg('image_upload_failed')];
+        }
+      } else {
+        delete($id, $table);
+        $errors = ['image' => 'Veuillez ajouter un photo pour votre identification'];
+      }
     } else {
       $errors = $v->getErrors();
       setFlash('error', getMsg('registration_failed'));
@@ -103,13 +133,7 @@ if ($selectedForm) {
 
 // Action to process and predefined action
 $action = (isset($_GET['action'])) ? strval($_GET['action']) : false;
-$actions = [
-  'login',
-  'logout',
-  'search',
-  'delete',
-  'update'
-];
+$actions = ['login', 'logout', 'search', 'delete', 'update'];
 
 
 if ($action && in_array($action, $actions)) {
@@ -142,6 +166,6 @@ if ($action && in_array($action, $actions)) {
     case 'logout' :
       unset($_SESSION['isLogged']);
       redirect('login');
-      break;
+    break;
   }
 }

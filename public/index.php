@@ -26,20 +26,21 @@
     <?php if ($selectedForm === 'membre') : ?>
       <h3 class="ui header">Formulaire d'indentification des membres de l'église la borne lushi</h3>
       <div>
-        <form action="" method="post" id="member">
-          <input type="hidden" name="type" value="member">
+        <form action="" method="post" id="member" enctype="multipart/form-data">
           <div class="row">
             <fieldset>
 
             <div class="file-field input-field col s12">
               <span class="btn blue-grey darken-1 waves-effect waves-light col s4 m4 l4" style="display: inline-block;">
                   <span>Choisier une Photo</span>
-                  <input type="file" name="image">
+                  <input type="file" name="image" accept="image">
               </span>
               <span class="file-path-wrapper col s8 l8 m8" style="display: inline-block;" >
                   <input class="file-path" placeholder="..." type="text">
               </span>
-              <div data-action="show-uploaded-file"></div>
+              <span class="helper-text red-text">
+                <?= e('image'); ?>
+              </span>
             </div>
 
               <?= input('matricule', '* Matricule', 'm6 s12 r'); ?>
@@ -96,8 +97,7 @@
     <?php if ($selectedForm === 'enfant') : ?>
     <h3 class="ui header">Formulaire d'indentification des enfants de l'église la borne lushi</h3>
       <div>
-        <form action="" method="post" id="child">
-          <input type="hidden" name="type" value="child">
+        <form action="" method="post" id="child" enctype="multipart/form-data">
           <div class="row">
 
             <div class="file-field input-field col s12">
@@ -120,7 +120,7 @@
             <?= input('prenom', 'Prénom de l\'enfant', 'm4 s12'); ?>
             <?= input('postnom', 'Postnom de l\'enfant', 'm4 s12'); ?>
 
-            <?= input('lieuNaissace', 'Lieu de naissance'); ?>
+            <?= input('lieuNaissance', 'Lieu de naissance'); ?>
             <?= input('dateNaissance', 'Date de naissance'); ?>
             <?= input('adresse', 'Adresse complète', 's12'); ?>
             <?= input('commune', 'Commune', 'm6 s12'); ?>
@@ -133,7 +133,11 @@
 
             <div class="input-field col s12">
                 <label for="remarque">Remarque</label>
-                <textarea name="remarque" id="remarque" class="materialize-textarea"><?= v('remarque'); ?></textarea>
+                <textarea 
+                  name="remarque" 
+                  id="remarque" 
+                  class="materialize-textarea validate <?= (empty(e('remarque'))) ? (empty('remarque'))? '' : 'valid' : 'invalid' ?>"
+                  ><?= v('remarque'); ?></textarea>
                 <span class="helper-text red-text">
                   <?= e('remarque'); ?>
                 </span>
