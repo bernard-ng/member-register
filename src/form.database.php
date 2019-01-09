@@ -1,5 +1,22 @@
 <?php
-require_once('form.core.php');
+
+// Connexion a la base de donnée
+$db = function () {
+    $db_user = "root";
+    $db_password = "";
+    $db_host = "localhost";
+    $db_name = "church_members";
+  
+    try {
+        return new PDO("mysql:Host={$db_host};dbname={$db_name};charset=utf8", $db_user, $db_password, [
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+            PDO::ATTR_ORACLE_NULLS => PDO::NULL_EMPTY_STRING,
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ
+        ]);
+    } catch(Exception $e) {
+        die('Connexion impossible, pour l\'instant');
+    }
+};
 
 
 /**
@@ -15,11 +32,11 @@ function query($statement, $data = [], $fetchAll = true)
     global $db;
 
     try {
-        if ($data) {
-            $req = $db->prepare($statement);
+        if (!empty($data)) {
+            $req = $db()->prepare($statement);
             $req->execute($data);
         } else {
-            $req = $db->query($statement);
+            $req = $db()->query($statement);
         }
 
         if (strpos($statement, "INSERT") === 0 ||
@@ -30,11 +47,9 @@ function query($statement, $data = [], $fetchAll = true)
         }
 
         $req->setFetchMode(PDO::FETCH_OBJ);
-        $fetchAll ? $req->fetch() : $req->fetchAll();
+        $res = $fetchAll ? $req->fetchAll() : $req->fetch();
         return $res;
     } catch (PDOException $e) {
-        echo "<pre>";
-        var_dump($e); die();
         return null;
     }
 }
@@ -90,5 +105,16 @@ function update($data, $id, $table)
  */
 function delete($id, $table)
 {
-    query("DELETE FROM {$table} WHERE id = ?", [$id]);
+    return query("DELETE FROM {$table} WHERE id = ?", [$id]);
+}
+
+
+/**
+ * get the last inserted data
+ *
+ * @param integer $limit
+ * @return mixed
+ */
+function getLast($table, $limit = 4) {
+    return query("SELECT * FROM {$table} ORDER BY id DESC LIMIT {$limit}");
 }

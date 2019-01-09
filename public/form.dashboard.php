@@ -1,7 +1,10 @@
 <?php
 require_once("../src/form.core.php");
+require_once("../src/form.database.php");
+
 $list = isset($_GET['list']) ? htmlspecialchars($_GET['list']) : false;
-$results = [];
+$members = getLast('members');
+$children = getLast('children');
 
 ?>
 <?php include('../src/inc/menu.php'); ?> 
@@ -30,9 +33,9 @@ $results = [];
           <thead>
             <tr>
               <th>id</th>
+              <th>image</th>
               <th>nom</th>
               <th>postnom</th>
-              <th>matricule</th>
               <th>actions</th>
             </tr>
           </thead>
@@ -40,38 +43,25 @@ $results = [];
             <?php if (!empty($members)) : ?>
             <?php foreach ($members as $member) : ?>
             <tr>
-              <td><b>
-                  <?= $member->id ?></b></td>
-              <td>
-                <?= $member->nom ?>
-              </td>
-              <td>
-                <?= $member->second_nom ?>
-              </td>
-              <td>
-                <?= $member->type ?>
-              </td>
+              <td><b><?= $member->id ?></b></td>
+              <td><img src="<?= $member->imageUrl ?>" width="60px" height="60px"  /></td>
+              <td><?= $member->nom ?></td>
+              <td><?= $member->prenom ?></td>
               <td>
                 <form method="POST" action="<?= "/delete" ?>" style="display: inline-block !important;">
                   <input type="hidden" name="id" value="<?= $member->id ?>">
                   <button type="submit" class="btn red" id="delete" title="supprimer">
-                    <i class="icon icon-remove" style="font-size: smaller !important;"></i>
+                    <i class="icon icon-remove" style="font-size: smaller !important;">
+                      suppr
+                    </i>
                   </button>
                 </form>
 
                 <a href="<?= $member->editUrl ?>">
                   <button class="btn" title="editer">
-                    <i class="icon icon-edit" style="font-size: smaller !important;"></i>
-                  </button>
-                </a>
-                <a href="<?= $member->pdfUrl ?>" id="confirm" title="obtenir pdf">
-                  <button class="btn btn-small blue-2">
-                    <i class="icon icon-print" style="font-size: smaller !important;"></i>
-                  </button>
-                </a>
-                <a href="<?= $member->qrcodeUrl ?>" class="zoombox" title="obtenir qrcode">
-                  <button class="btn primary-b">
-                    <i class="icon icon-qrcode"></i>
+                    <i class="icon icon-edit" style="font-size: smaller !important;">
+                      editer
+                    </i>
                   </button>
                 </a>
               </td>
@@ -109,41 +99,28 @@ $results = [];
             </tr>
           </thead>
           <tbody>
-            <?php if (!empty($members)) : ?>
-            <?php foreach ($members as $member) : ?>
+            <?php if (!empty($children)) : ?>
+            <?php foreach ($children as $child) : ?>
             <tr>
-              <td><b>
-                  <?= $member->id ?></b></td>
-              <td>
-                <?= $member->nom ?>
-              </td>
-              <td>
-                <?= $member->second_nom ?>
-              </td>
-              <td>
-                <?= $member->type ?>
-              </td>
+            <td><b><?= $child->id ?></b></td>
+              <td><img src="<?= $child->imageUrl ?>" width="60px" height="60px"  /></td>
+              <td><?= $child->nom ?></td>
+              <td><?= $child->prenom ?></td>
               <td>
                 <form method="POST" action="<?= "/delete" ?>" style="display: inline-block !important;">
-                  <input type="hidden" name="id" value="<?= $member->id ?>">
+                  <input type="hidden" name="id" value="<?= $child->id ?>">
                   <button type="submit" class="btn red" id="delete" title="supprimer">
-                    <i class="icon icon-remove" style="font-size: smaller !important;"></i>
+                    <i class="icon icon-remove" style="font-size: smaller !important;">
+                      suppr
+                    </i>
                   </button>
                 </form>
 
-                <a href="<?= $member->editUrl ?>">
+                <a href="<?= $child->editUrl ?>">
                   <button class="btn" title="editer">
-                    <i class="icon icon-edit" style="font-size: smaller !important;"></i>
-                  </button>
-                </a>
-                <a href="<?= $member->pdfUrl ?>" id="confirm" title="obtenir pdf">
-                  <button class="btn btn-small blue-2">
-                    <i class="icon icon-print" style="font-size: smaller !important;"></i>
-                  </button>
-                </a>
-                <a href="<?= $member->qrcodeUrl ?>" class="zoombox" title="obtenir qrcode">
-                  <button class="btn primary-b">
-                    <i class="icon icon-qrcode"></i>
+                    <i class="icon icon-edit" style="font-size: smaller !important;">
+                      editer
+                    </i>
                   </button>
                 </a>
               </td>

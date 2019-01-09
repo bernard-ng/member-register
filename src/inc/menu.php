@@ -84,11 +84,12 @@
         </li>
         <li>&nbsp;</li>
         <li><a href="index.php">Formulaires</a></li>
-        <li><a href="form.dashboard.php">Lists</a></li>
+        <li><a href="form.dashboard.php">Listes</a></li>
         <li><a href="form.login.php?action=logout">Déconnexion</a></li>
       </ul>
       <?php else : ?>
         <ul class="right hide-on-med-and-down links">
+          <li><a href="index.php">Formulaires</a></li>
           <li><a href="form.login.php?action=logout">Connexion</a></li>
         </ul>
       <?php endif; ?>

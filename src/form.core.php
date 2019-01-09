@@ -1,29 +1,14 @@
 <?php
 
-// Information de connexion à la base de donnée
-$db_user = "root";
-$db_password = "";
-$db_host = "localhost";
-$db_name = "church_members";
-
-
 // Demarrage de la session
 if (session_status() === PHP_SESSION_NONE) {
-    session_name('ng_member_register');
+    session_name('NG-MR_APP');
     session_start();
 }
 
 
 // Si un administrateur est connecté
 $isLogged = isset($_SESSION['isLogged']) ? $_SESSION['isLogged'] : false;
-
-
-// Connexion à la base de donnée
-$db = new PDO("mysql:Host={$db_host};dbname={$db_name};charset=utf8", $db_user, $db_password, [
-    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-    PDO::ATTR_ORACLE_NULLS => PDO::NULL_EMPTY_STRING,
-    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ
-]);
 
 
 // Message de validation d'information
