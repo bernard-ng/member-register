@@ -80,7 +80,6 @@
               <?= input('formationEglise', 'Formation à l\'église', 's12'); ?>
               <?= input('autresSavoir', 'Autres savoir-faire', 's12'); ?>
               <?= input('nomConjoint', 'Nom conjoint(e)', 's12'); ?>
-              <?= input('formationEglise', 'Formation à l\'église', 's12'); ?>
               <?= input('nombreEnfant', 'Nombre d\'enfant', 's12'); ?>
             </fieldset>
           </div>

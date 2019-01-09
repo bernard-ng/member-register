@@ -25,7 +25,7 @@ $db = function () {
  * @param string $statement
  * @param array $data
  * @param boolean $fetchAll
- * @return void
+ * @return mixed
  */
 function query($statement, $data = [], $fetchAll = true)
 {
@@ -50,6 +50,7 @@ function query($statement, $data = [], $fetchAll = true)
         $res = $fetchAll ? $req->fetchAll() : $req->fetch();
         return $res;
     } catch (PDOException $e) {
+        var_dump($e);
         return null;
     }
 }
@@ -60,7 +61,7 @@ function query($statement, $data = [], $fetchAll = true)
  *
  * @param array $data
  * @param string $table
- * @return void
+ * @return mixed
  */
 function create($data, $table)
 {
@@ -81,7 +82,7 @@ function create($data, $table)
  * @param array $data
  * @param int $id
  * @param string $table
- * @return void
+ * @return mixed
  */
 function update($data, $id, $table)
 {
@@ -101,7 +102,7 @@ function update($data, $id, $table)
  * delete a data form the database
  *
  * @param int $id
- * @return void
+ * @return mixed
  */
 function delete($id, $table)
 {
@@ -117,4 +118,27 @@ function delete($id, $table)
  */
 function getLast($table, $limit = 4) {
     return query("SELECT * FROM {$table} ORDER BY id DESC LIMIT {$limit}");
+}
+
+
+/**
+ * get all inserted data
+ *
+ * @param string $table
+ * @return mixed
+ */
+function all($table) {
+    return query("SELECT * FROM {$table} ORDER BY id DESC");
+}
+
+
+/**
+ * find a data
+ *
+ * @param int $id
+ * @param string $table
+ * @return mixed
+ */
+function find($id, $table) {
+    return query("SELECT * FROM {$table} WHERE id = ?", [$id], false);
 }

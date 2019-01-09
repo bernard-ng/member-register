@@ -1,10 +1,13 @@
 <?php
 require_once("../src/form.core.php");
 require_once("../src/form.database.php");
+require_once("../src/form.process.php");
+
+loggedOnly();
 
 $list = isset($_GET['list']) ? htmlspecialchars($_GET['list']) : false;
-$members = getLast('members');
-$children = getLast('children');
+$members = all('members');
+$children = all('children');
 
 ?>
 <?php include('../src/inc/menu.php'); ?> 
@@ -48,8 +51,9 @@ $children = getLast('children');
               <td><?= $member->nom ?></td>
               <td><?= $member->prenom ?></td>
               <td>
-                <form method="POST" action="<?= "/delete" ?>" style="display: inline-block !important;">
+                <form method="POST" action="?list=membre&action=delete" style="display: inline-block !important;">
                   <input type="hidden" name="id" value="<?= $member->id ?>">
+                  <input type="hidden" name="type" value="members">
                   <button type="submit" class="btn red" id="delete" title="supprimer">
                     <i class="icon icon-remove" style="font-size: smaller !important;">
                       suppr
@@ -57,7 +61,7 @@ $children = getLast('children');
                   </button>
                 </form>
 
-                <a href="<?= $member->editUrl ?>">
+                <a href="?list=membre&action=edit&id=<?= $member->id ?>">
                   <button class="btn" title="editer">
                     <i class="icon icon-edit" style="font-size: smaller !important;">
                       editer
@@ -107,8 +111,9 @@ $children = getLast('children');
               <td><?= $child->nom ?></td>
               <td><?= $child->prenom ?></td>
               <td>
-                <form method="POST" action="<?= "/delete" ?>" style="display: inline-block !important;">
+                <form method="POST" action="?list=enfant&action=delete" style="display: inline-block !important;">
                   <input type="hidden" name="id" value="<?= $child->id ?>">
+                  <input type="hidden" name="type" value="children">
                   <button type="submit" class="btn red" id="delete" title="supprimer">
                     <i class="icon icon-remove" style="font-size: smaller !important;">
                       suppr
@@ -116,7 +121,7 @@ $children = getLast('children');
                   </button>
                 </form>
 
-                <a href="<?= $child->editUrl ?>">
+                <a href="?list=enfant&action=editt&id=<?= $child->id ?>">
                   <button class="btn" title="editer">
                     <i class="icon icon-edit" style="font-size: smaller !important;">
                       editer

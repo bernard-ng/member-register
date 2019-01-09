@@ -27,7 +27,8 @@ $flashMsg = [
     'search_failed' => 'Aucun enregistrement ne correspond à votre recherche',
     'image_upload_failed' => "Votre photo n'a pu être téléchargée, veuillez vérifier
     que c'est bien une image, qu'elle pèse moins de 15mo, si cela se repoduit, 
-    essayez avec une autre photo."
+    essayez avec une autre photo.",
+    'failed' => 'Oups une erreur est survenue dans votre navigation'
 ];
 
 
@@ -55,12 +56,12 @@ function getMsg($key)
  * @param string $file
  * @return void
  */
-function redirect($file = '') {
+function redirect($file = '', $option = '') {
     if (empty($file)) {
         header("Location: index.php");
         exit();
     }
-    header("Location: form.{$file}.php");
+    header("Location: form.{$file}.php{$option}");
     exit();
 }
 

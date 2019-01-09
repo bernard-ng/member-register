@@ -68,6 +68,35 @@ INPUT;
 }
 
 
+/**
+ * genereate input for update
+ *
+ * @param string $name
+ * @param string $label
+ * @param string $class
+ * @param string $type
+ * @return string
+ */
+function inputUpdate($value, $name, $label, $class = 'l6 m6 s12', $type = 'text')
+{
+    $error = e($name);
+    $value = (v($name)) ? v($name) : $value;
+    $validate = (empty($error)) ? (empty($value))? '' : 'valid' : 'invalid'  ;
+
+    $input = <<< INPUT
+<div class="input-field col {$class}">
+  <label for="{$name}">{$label}</label>
+  <input type="{$type}" name="{$name}" id="{$name}" value="{$value}" class="validate {$validate}">
+  <span class="helper-text red-text">
+      {$error}
+  </span>
+</div>
+INPUT;
+
+  return $input;
+}
+
+
 
 // Selection du formulaire et definition de la table d'enregistrement
 $selectedForm = (isset($_GET['type'])) ? strval($_GET['type']) : false;
@@ -105,7 +134,7 @@ if ($selectedForm) {
       };
 
       create($data($_POST), $table);
-      $id = $db->lastInsertId();
+      $id = $db()->lastInsertId();
 
       if (isset($_FILES['image']['name']) && !empty($_FILES['image']['name'])) {
         $isUploaded = upload($_FILES['image'], $table, $id);
@@ -133,7 +162,7 @@ if ($selectedForm) {
 
 // Action to process and predefined action
 $action = (isset($_GET['action'])) ? strval($_GET['action']) : false;
-$actions = ['login', 'logout', 'search', 'delete', 'update'];
+$actions = ['login', 'logout', 'search', 'delete', 'update', 'edit'];
 
 
 if ($action && in_array($action, $actions)) {
@@ -166,6 +195,38 @@ if ($action && in_array($action, $actions)) {
     case 'logout' :
       unset($_SESSION['isLogged']);
       redirect('login');
+    break;
+
+    case 'delete' : 
+      if (isPosted()) {
+        $id = (isset($_POST['id'])) ? intval($_POST['id']) : false;
+        $type = (isset($_POST['type'])) ? strval($_POST['type']) : false;
+
+        if ($id && $type && in_array($type, ['members', 'children'])) {
+          $exist = find($id, $type);
+
+          if ($exist) {
+            delete($id, $type);
+            setFlash('success', getMsg('delete_success'));
+          }
+
+          setFlash('error', getMsg('delete_failed'));
+        }
+      }
+    break;
+
+    case 'edit' :
+      $_SESSION['data'] = [
+        'type' => (isset($_GET['list'])) ? strval($_GET['list']) : false,
+        'id' => (isset($_GET['id'])) ? intval($_GET['id']) : false
+      ];
+      redirect('edit');
+    break;
+
+    case 'update' : 
+      if (isPosted()) {
+
+      }
     break;
   }
 }
