@@ -1,11 +1,6 @@
 <?php require_once('../src/form.process.php'); ?>
 <?php include("../src/inc/menu.php"); ?>
 
-<?php if ($selectedForm): ?>
-  <div style="margin-bottom: 20px;">
-    <a href="?type=" class="btn blue darken-4 white-text">Choix du formulaire</a>
-  </div>
-<?php endif; ?>
 
 <?php if(!$selectedForm): ?>
   <div class="card-panel">

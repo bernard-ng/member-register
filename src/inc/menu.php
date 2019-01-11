@@ -69,7 +69,7 @@
 
 <body class="grey lighten-2">
 <header>
-  <nav class="grey darken-3 z-depth-1" style="margin-bottom: 65px;">
+  <nav class="grey darken-3 z-depth-1">
     <div class="nav-wrapper container " id="menu">
       <a href="http://www.labornelushi.net" class="brand-logo">
         La Borne

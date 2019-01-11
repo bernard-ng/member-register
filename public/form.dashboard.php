@@ -28,7 +28,6 @@ $children = all('children');
   <?php endif; ?>
 
   <?php if($list): ?>
-    <a href="?list=" class="btn blue darken-4">Choix de la liste</a>
     <?php if ($list == 'membre'): ?>
       <div class="card-panel row">
         <h3 class="ui header">Les Membres</h3>
