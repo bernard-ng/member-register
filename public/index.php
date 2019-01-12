@@ -5,13 +5,16 @@
 <?php if(!$selectedForm): ?>
   <div class="card-panel">
     <h3 class="ui header">Choix du formulaire</h3>
+    <section class="section">
     <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
     Optio repudiandae incidunt dolorem expedita fugit quos! Rerum maxime, aliquid reiciendis fuga 
     ipsam eum excepturi animi cupiditate adipisci rem aliquam obcaecati eos.</p>
+    </section>
+    <div class="divider"></div>
     <div class="row">
-      <a href="?type=membre" class="col s5 btn blue darken-4 white-text">Membres</a>
+      <a href="?type=membre" class="col s5 btn grey darken-3 white-text">Adultes</a>
       <div class="col s2"></div>
-      <a href="?type=enfant" class="col s5 btn blue darken-4 white-text">Enfants</a>
+      <a href="?type=enfant" class="col s5 btn grey darken-3 white-text">Enfants</a>
     </div>
   </div>
 <?php endif; ?>
@@ -80,7 +83,7 @@
           </div>
 
           <div class="row">
-            <button class="btn blue white-text darken-4 waves-effect" style="display: block; width: 100%">
+            <button class="btn blue white-text darken-3 waves-effect" style="display: block; width: 100%">
               Envoyer
             </button>
           </div>
@@ -139,7 +142,7 @@
           </div>
 
           <div class="row">
-            <button class="btn blue white-text darken-4 waves-effect" style="display: block; width: 100%">
+            <button class="btn blue white-text darken-3 waves-effect" style="display: block; width: 100%">
               Envoyer
             </button>
           </div>
