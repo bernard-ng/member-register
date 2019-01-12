@@ -4,8 +4,8 @@ use Respect\Validation\Validator as v;
 
 // validation rules for members indentification
 $membersDataValidationRules = [
-    'matricule'         => v::notEmpty()->numeric()->setName('Le Matricule'),
-    'numeroCarte'       => v::notEmpty()->numeric()->setName('Le Numéro de carte'),
+    'matricule'         => v::optional(numeric())->setName('Le Matricule'),
+    'numeroCarte'       => v::optional(numeric())->setName('Le Numéro de carte'),
 
     'prenom'            => v::notEmpty()->setName('Le Prénom'),
     'nom'               => v::notEmpty()->setName('Le nom'),
@@ -57,7 +57,7 @@ $childrenValidationRules = [
     'classe'            => v::optional(v::notBlank())->setName('classe'),
     'activiteEcole'     => v::optional(v::notBlank())->setName('activités à l\'école'),
     'activiteEglise'    => v::optional(v::notBlank())->setName('activités à l\'église'),
-    'remarque'          => v::notEmpty()->setName('la remarque')
+    'remarque'          => v::optional(v::notBlank())->setName('la remarque')
 ];
 
 
