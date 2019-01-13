@@ -2,7 +2,7 @@
 
 // Demarrage de la session
 if (session_status() === PHP_SESSION_NONE) {
-    session_name('NG-MR_APP');
+    session_name('laborne_register_app');
     session_start();
 }
 
