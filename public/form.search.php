@@ -4,7 +4,7 @@
   $query = isset($_GET['q']) ? htmlspecialchars($_GET['q']) : false;
   $results = [];
 ?>
-<?php include("../src/inc/menu.php"); ?>
+<?php include("../src/include/menu.php"); ?>
 <div class="container row" style="margin-top: 64px;">
   <?php if(!$query): ?>
     <div class="card-panel">
@@ -64,4 +64,4 @@
     <?php endif; ?>
   <?php endif; ?>
 </div>
-<?php include("../src/inc/footer.php"); ?>
+<?php include("../src/include/footer.php"); ?>

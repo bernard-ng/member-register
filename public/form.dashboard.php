@@ -10,7 +10,7 @@ $members = all('members');
 $children = all('children');
 
 ?>
-<?php include('../src/inc/menu.php'); ?> 
+<?php include('../src/include/menu.php'); ?> 
 <section class="row">
   <?php if(!$list): ?>
     <div class="row card-panel">
@@ -149,4 +149,4 @@ $children = all('children');
     <?php endif; ?>
   <?php endif; ?>
 </section>
-<?php include('../src/inc/footer.php'); ?>
+<?php include('../src/include/footer.php'); ?>

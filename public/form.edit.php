@@ -25,7 +25,7 @@ if (isset($_SESSION['data']) && !empty($_SESSION['data'])) {
     redirect('dashboard');
 }
 ?>
-<?php include('../src/inc/menu.php') ?>
+<?php include('../src/include/menu.php') ?>
     <div class="row">
         <div class="col l4">
             <div class="card-panel">
@@ -95,4 +95,4 @@ if (isset($_SESSION['data']) && !empty($_SESSION['data'])) {
             </div>
         </div>
     </div>
-<?php include('../src/inc/footer.php'); ?>
+<?php include('../src/include/footer.php'); ?>

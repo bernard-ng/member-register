@@ -1,5 +1,5 @@
 <?php require_once('../src/form.process.php'); ?>
-<?php include("../src/inc/menu.php"); ?>
+<?php include("../src/include/menu.php"); ?>
 
 
 <?php if(!$selectedForm): ?>
@@ -151,4 +151,4 @@
     <?php endif; ?>
   </div>
 <?php endif; ?>
-<?php include("../src/inc/footer.php"); ?>
+<?php include("../src/include/footer.php"); ?>
