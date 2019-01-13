@@ -1,22 +1,22 @@
 <?php
 require_once("../src/form.core.php");
-require_once("../src/form.database.php");
-require_once("../src/form.process.php");
+require_once(ROOT . "/src/form.database.php");
+require_once(ROOT . "/src/form.process.php");
 
 loggedOnly();
 
 $list = isset($_GET['list']) ? htmlspecialchars($_GET['list']) : false;
-$members = all('members');
+$adults = all('adults');
 $children = all('children');
 
 ?>
-<?php include('../src/include/menu.php'); ?> 
+<?php include(ROOT . 'src/include/menu.php'); ?> 
 <section class="row">
-  <?php if(!$list): ?>
+  <?php if (!$list) : ?>
     <div class="row card-panel">
       <h3 class="ui header">Liste des Membres</h3>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error omnis nihil veniam ea, perspiciatis porro temporibus enim molestias eveniet nesciunt tempore dolore tempora iure. Officia eum aliquam a odit autem.</p>
-        <a href="?list=membre" class="btn blue darken-4">voir plus</a>
+        <a href="?list=adult" class="btn blue darken-4">voir plus</a>
         <br><br>
       <div class="divider"></div>
 
@@ -27,8 +27,8 @@ $children = all('children');
     </div>
   <?php endif; ?>
 
-  <?php if($list): ?>
-    <?php if ($list == 'membre'): ?>
+  <?php if ($list) : ?>
+    <?php if ($list == 'adult') : ?>
       <div class="card-panel row">
         <h3 class="ui header">Les Membres</h3>
         <table class="table bordered striped">
@@ -42,17 +42,17 @@ $children = all('children');
             </tr>
           </thead>
           <tbody>
-            <?php if (!empty($members)) : ?>
-            <?php foreach ($members as $member) : ?>
+            <?php if (!empty($adults)) : ?>
+            <?php foreach ($adults as $adult) : ?>
             <tr>
-              <td><b><?= $member->id ?></b></td>
-              <td><img src="<?= $member->imageUrl ?>" width="60px" height="60px"  /></td>
-              <td><?= $member->nom ?></td>
-              <td><?= $member->prenom ?></td>
+              <td><b><?= $adult->id ?></b></td>
+              <td><img src="<?= $adult->imageUrl ?>" width="60px" height="60px"  /></td>
+              <td><?= $adult->nom ?></td>
+              <td><?= $adult->prenom ?></td>
               <td>
-                <form method="POST" action="?list=membre&action=delete" style="display: inline-block !important;">
-                  <input type="hidden" name="id" value="<?= $member->id ?>">
-                  <input type="hidden" name="type" value="members">
+                <form method="POST" action="?list=adult&action=delete" style="display: inline-block !important;">
+                  <input type="hidden" name="id" value="<?= $adult->id ?>">
+                  <input type="hidden" name="type" value="adults">
                   <button type="submit" class="btn red" id="delete" title="supprimer">
                     <i class="icon icon-remove" style="font-size: smaller !important;">
                       suppr
@@ -60,7 +60,7 @@ $children = all('children');
                   </button>
                 </form>
 
-                <a href="?list=membre&action=edit&id=<?= $member->id ?>">
+                <a href="?list=adult&action=edit&id=<?= $adult->id ?>">
                   <button class="btn" title="editer">
                     <i class="icon icon-edit" style="font-size: smaller !important;">
                       editer
@@ -73,7 +73,7 @@ $children = all('children');
             <?php else : ?>
             <tr>
               <td><b>0</b></td>
-              <td>Aucun membre pour l'instant</td>
+              <td>Aucun adult pour l'instant</td>
               <td></td>
               <td></td>
               <td>
@@ -88,7 +88,7 @@ $children = all('children');
       </div>
     <?php endif; ?>
 
-    <?php if ($list == 'enfant'): ?>
+    <?php if ($list == 'enfant') : ?>
       <div class="card-panel row">
         <h3 class="ui header">Les Enfants</h3>
         <table class="table bordered striped">
@@ -133,7 +133,7 @@ $children = all('children');
             <?php else : ?>
             <tr>
               <td><b>0</b></td>
-              <td>Aucun membre pour l'instant</td>
+              <td>Aucun adult pour l'instant</td>
               <td></td>
               <td></td>
               <td>
@@ -149,4 +149,4 @@ $children = all('children');
     <?php endif; ?>
   <?php endif; ?>
 </section>
-<?php include('../src/include/footer.php'); ?>
+<?php include(ROOT . 'src/include/footer.php'); ?>

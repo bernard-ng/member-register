@@ -1,4 +1,4 @@
-CREATE TABLE `members`( 
+CREATE TABLE `adults`( 
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT , 
   `matricule` VARCHAR(255) NULL ,
   `numeroCarte` INT NULL , 

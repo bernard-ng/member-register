@@ -15,7 +15,8 @@ require_once("form.validation.php");
  * @param string $key
  * @return string|null
  */
-function e ($key) {
+function e($key)
+{
   global $errors;
   if (array_key_exists($key, $errors)) {
     return htmlspecialchars(
@@ -32,7 +33,8 @@ function e ($key) {
  * @param string $key
  * @return string|null
  */
-function v ($key) {
+function v($key)
+{
   if (isset($_POST[$key]) && !empty($_POST[$key])) {
     return htmlentities($_POST[$key]);
   }
@@ -50,11 +52,11 @@ function v ($key) {
  */
 function input($name, $label, $class = 'l6 m6 s12', $type = 'text')
 {
-    $error = e($name);
-    $value = v($name);
-    $validate = (empty($error)) ? (empty($value))? '' : 'valid' : 'invalid'  ;
+  $error = e($name);
+  $value = v($name);
+  $validate = (empty($error)) ? (empty($value)) ? '' : 'valid' : 'invalid';
 
-    $input = <<< INPUT
+  $input = <<< INPUT
 <div class="input-field col {$class}">
   <label for="{$name}">{$label}</label>
   <input type="{$type}" name="{$name}" id="{$name}" value="{$value}" class="validate {$validate}">
@@ -79,11 +81,11 @@ INPUT;
  */
 function inputUpdate($value, $name, $label, $class = 'l6 m6 s12', $type = 'text')
 {
-    $error = e($name);
-    $value = (v($name)) ? v($name) : $value;
-    $validate = (empty($error)) ? (empty($value))? '' : 'valid' : 'invalid'  ;
+  $error = e($name);
+  $value = (v($name)) ? v($name) : $value;
+  $validate = (empty($error)) ? (empty($value)) ? '' : 'valid' : 'invalid';
 
-    $input = <<< INPUT
+  $input = <<< INPUT
 <div class="input-field col {$class}">
   <label for="{$name}">{$label}</label>
   <input type="{$type}" name="{$name}" id="{$name}" value="{$value}" class="validate {$validate}">
@@ -105,12 +107,12 @@ $errors = [];
 
 if ($selectedForm) {
   switch ($selectedForm) {
-    case 'membre':
-      $table = 'members';
-      $rules = $membersDataValidationRules;
+    case 'adult':
+      $table = 'adults';
+      $rules = $adultsDataValidationRules;
       break;
-  
-    case 'enfant':
+
+    case 'children':
       $table = 'children';
       $rules = $childrenValidationRules;
       break;
@@ -124,10 +126,9 @@ if ($selectedForm) {
     $v = (new Validator(false))->validate($_POST, $rules);
 
     if ($v->isValid()) {
-
-      $data = function($post) {
+      $data = function ($post) {
         $data = [];
-        foreach($post as $k => $v) {
+        foreach ($post as $k => $v) {
           $data[$k] = (empty($v)) ? null : htmlspecialchars(strval($v));
         }
         return $data;
@@ -136,7 +137,8 @@ if ($selectedForm) {
       create($data($_POST), $table);
       $id = $db()->lastInsertId();
 
-      if (isset($_FILES['image']['name']) && !empty($_FILES['image']['name'])) {
+      // file upload process
+      if (hasUpload('image')) {
         $isUploaded = upload($_FILES['image'], $table, $id);
 
         if ($isUploaded) {
@@ -149,7 +151,7 @@ if ($selectedForm) {
         }
       } else {
         delete($id, $table);
-        $errors = ['image' => 'Veuillez ajouter un photo pour votre identification'];
+        $errors = ['image' => getMsg('image_required')];
       }
     } else {
       $errors = $v->getErrors();
@@ -167,9 +169,9 @@ $actions = ['login', 'logout', 'search', 'delete', 'update', 'edit'];
 
 if ($action && in_array($action, $actions)) {
   switch ($action) {
-    case 'login' :
+    case 'login':
       $v = (new Validator(false))->validate($_POST, $loginDataValidationRules);
-      
+
       if ($v->isValid()) {
         $name = strval($_POST['nom']);
         $password = strval($_POST['password']);
@@ -190,19 +192,19 @@ if ($action && in_array($action, $actions)) {
         $errors = $v->getErrors();
         setFlash('error', getMsg('login_failed'));
       }
-    break;
+      break;
 
-    case 'logout' :
+    case 'logout':
       unset($_SESSION['isLogged']);
       redirect('login');
-    break;
+      break;
 
-    case 'delete' : 
+    case 'delete':
       if (isPosted()) {
         $id = (isset($_POST['id'])) ? intval($_POST['id']) : false;
         $type = (isset($_POST['type'])) ? strval($_POST['type']) : false;
 
-        if ($id && $type && in_array($type, ['members', 'children'])) {
+        if ($id && $type && in_array($type, ['adults', 'children'])) {
           $exist = find($id, $type);
 
           if ($exist) {
@@ -213,20 +215,20 @@ if ($action && in_array($action, $actions)) {
           setFlash('error', getMsg('delete_failed'));
         }
       }
-    break;
+      break;
 
-    case 'edit' :
+    case 'edit':
       $_SESSION['data'] = [
         'type' => (isset($_GET['list'])) ? strval($_GET['list']) : false,
         'id' => (isset($_GET['id'])) ? intval($_GET['id']) : false
       ];
       redirect('edit');
-    break;
+      break;
 
-    case 'update' : 
+    case 'update':
       if (isPosted()) {
 
       }
-    break;
+      break;
   }
 }

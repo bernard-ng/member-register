@@ -2,8 +2,8 @@
 
 use Respect\Validation\Validator as v;
 
-// validation rules for members indentification
-$membersDataValidationRules = [
+// validation rules for adults indentification
+$adultsDataValidationRules = [
     'matricule'         => v::optional(v::numeric())->setName('Le Matricule'),
     'numeroCarte'       => v::optional(v::numeric())->setName('Le Numéro de carte'),
 
@@ -41,18 +41,18 @@ $membersDataValidationRules = [
 
 // Validation rules for children indentification
 $childrenValidationRules = [
-    'matricule'         => $membersDataValidationRules['matricule'],
-    'numeroCarte'       => $membersDataValidationRules['numeroCarte'],
+    'matricule'         => $adultsDataValidationRules['matricule'],
+    'numeroCarte'       => $adultsDataValidationRules['numeroCarte'],
     'nomsPere'          => v::notEmpty()->setName('Noms du père'),
     'nomsMere'          => v::notEmpty()->setName('Noms de la Mère'),
-    'nom'               => $membersDataValidationRules['nom'],
-    'prenom'            => $membersDataValidationRules['prenom'],
-    'postnom'           => $membersDataValidationRules['postnom'],
-    'lieuNaissance'      => $membersDataValidationRules['lieuNaissance'],
-    'dateNaissance'     => $membersDataValidationRules['dateNaissance'],
-    'adresse'           => $membersDataValidationRules['adresse'],
-    'commune'           => $membersDataValidationRules['commune'],
-    'quartier'          => $membersDataValidationRules['quartier'],
+    'nom'               => $adultsDataValidationRules['nom'],
+    'prenom'            => $adultsDataValidationRules['prenom'],
+    'postnom'           => $adultsDataValidationRules['postnom'],
+    'lieuNaissance'      => $adultsDataValidationRules['lieuNaissance'],
+    'dateNaissance'     => $adultsDataValidationRules['dateNaissance'],
+    'adresse'           => $adultsDataValidationRules['adresse'],
+    'commune'           => $adultsDataValidationRules['commune'],
+    'quartier'          => $adultsDataValidationRules['quartier'],
     'nomEcole'          => v::optional(v::notBlank())->setName('Nom de l\'école'),
     'classe'            => v::optional(v::notBlank())->setName('classe'),
     'activiteEcole'     => v::optional(v::notBlank())->setName('activités à l\'école'),

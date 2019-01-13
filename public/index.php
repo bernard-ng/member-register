@@ -1,7 +1,9 @@
-<?php require_once('../src/form.process.php'); ?>
-<?php include("../src/include/menu.php"); ?>
+<?php
+require_once('../src/form.core.php'); 
+require_once(ROOT . '/src/form.process.php'); 
 
-
+?>
+<?php include(ROOT . "/src/include/menu.php"); ?>
 <?php if(!$selectedForm): ?>
   <div class="card-panel">
     <h3 class="ui header">Choix du formulaire</h3>
@@ -12,19 +14,19 @@
     </section>
     <div class="divider"></div>
     <div class="row">
-      <a href="?type=membre" class="col s5 btn grey darken-3 white-text">Adultes</a>
+      <a href="?type=adult" class="col s5 btn grey darken-3 white-text">Adultes</a>
       <div class="col s2"></div>
-      <a href="?type=enfant" class="col s5 btn grey darken-3 white-text">Enfants</a>
+      <a href="?type=children" class="col s5 btn grey darken-3 white-text">Enfants</a>
     </div>
   </div>
 <?php endif; ?>
 
 <?php if ($selectedForm): ?>
   <div class="card-panel">
-    <?php if ($selectedForm === 'membre') : ?>
-      <h3 class="ui header">Formulaire d'indentification des membres de l'église la borne lushi</h3>
+    <?php if ($selectedForm === 'adult') : ?>
+      <h3 class="ui header">Formulaire d'indentification des adults de l'église la borne lushi</h3>
       <div>
-        <form action="" method="post" id="member" enctype="multipart/form-data">
+        <form action="" method="post" id="adult" enctype="multipart/form-data">
           <div class="row">
             <fieldset>
 
@@ -43,8 +45,8 @@
 
               <?= input('matricule', '* Matricule', 'm6 s12 r'); ?>
               <?= input('numeroCarte', '* N<sup>o</sup> carte de Membre', 'm6 s12 r'); ?>
-              <?= input('prenom', '* Prénom membre', 'm4 s12 r'); ?>
-              <?= input('nom', '* Nom membre', 'm4 s12 r'); ?>
+              <?= input('prenom', '* Prénom adult', 'm4 s12 r'); ?>
+              <?= input('nom', '* Nom adult', 'm4 s12 r'); ?>
               <?= input('postnom', '* Postnom', 'm4 s12 r'); ?>
               <?= input('telephone1', 'Téléphone (1)'); ?>
               <?= input('telephone2', 'Téléphone (2)'); ?>
@@ -91,7 +93,7 @@
       </div>
     <?php endif; ?>
 
-    <?php if ($selectedForm === 'enfant') : ?>
+    <?php if ($selectedForm === 'children') : ?>
     <h3 class="ui header">Formulaire d'indentification des enfants de l'église la borne lushi</h3>
       <div>
         <form action="" method="post" id="child" enctype="multipart/form-data">
@@ -109,7 +111,7 @@
             </div>
 
             <?= input('matricule', 'Matricule du père'); ?>
-            <?= input('numeroCarte', 'N<sup>0</sup> Carte de membre'); ?>
+            <?= input('numeroCarte', 'N<sup>0</sup> Carte de adult'); ?>
             <?= input('nomsPere', 'Nom / Prénom / Postnom du Père', 's12'); ?>
             <?= input('nomsMere', 'Nom / Prénom / Postnom du Mère', 's12'); ?>
 
@@ -151,4 +153,4 @@
     <?php endif; ?>
   </div>
 <?php endif; ?>
-<?php include("../src/include/footer.php"); ?>
+<?php include(ROOT . "src/include/footer.php"); ?>

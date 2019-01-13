@@ -1,9 +1,9 @@
 <?php
 require_once("../src/form.core.php");
-require_once("../src/form.process.php");
+require_once(ROOT . "/src/form.process.php");
 
 ?>
-<?php include("../src/include/menu.php"); ?>
+<?php include(ROOT . "src/include/menu.php"); ?>
 <div class="card-panel row" style="max-width: 500px; margin: 0.5rem auto;">
   <h3 class="ui header">formulaire de connexion</h3>
   <form action="?action=login" method="post">
@@ -18,4 +18,4 @@ require_once("../src/form.process.php");
   </form>
 </div>
 </div>
-<?php include("../src/include/footer.php"); ?>
+<?php include(ROOT . "src/include/footer.php"); ?>

@@ -27,8 +27,7 @@ $db = function () {
  * @param boolean $fetchAll
  * @return mixed
  */
-function query($statement, $data = [], $fetchAll = true)
-{
+function query($statement, $data = [], $fetchAll = true) {
     global $db;
 
     try {
@@ -50,7 +49,6 @@ function query($statement, $data = [], $fetchAll = true)
         $res = $fetchAll ? $req->fetchAll() : $req->fetch();
         return $res;
     } catch (PDOException $e) {
-        var_dump($e);
         return null;
     }
 }
@@ -63,8 +61,7 @@ function query($statement, $data = [], $fetchAll = true)
  * @param string $table
  * @return mixed
  */
-function create($data, $table)
-{
+function create($data, $table) {
     $fields = [];
     $values = [];
     foreach ($data as $k => $v) {
@@ -84,8 +81,7 @@ function create($data, $table)
  * @param string $table
  * @return mixed
  */
-function update($data, $id, $table)
-{
+function update($data, $id, $table) {
     $fields = [];
     $values = [];
     foreach ($data as $k => $v) {
@@ -104,8 +100,7 @@ function update($data, $id, $table)
  * @param int $id
  * @return mixed
  */
-function delete($id, $table)
-{
+function delete($id, $table) {
     return query("DELETE FROM {$table} WHERE id = ?", [$id]);
 }
 
