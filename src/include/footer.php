@@ -2,6 +2,6 @@
     <strong>Developped by <a href="https://github.com/bernard-ng">bernard-ng</a></strong>
     </div>
   </main>
+  <div class="overlay"></div>
 </body>
-<div class="overlay"></div>
 </html>
