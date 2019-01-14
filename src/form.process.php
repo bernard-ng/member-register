@@ -139,6 +139,7 @@ if ($selectedForm) {
         $imageName = uniqid('laborne_');
         $imageUrl = "images/{$table}/{$imageName}.jpg";
         create(array_merge($data($_POST), compact('imageUrl')), $table);
+        $id = $db()->lastInsertId();
 
         $isUploaded = upload($_FILES['image'], $table, $imageName);
 

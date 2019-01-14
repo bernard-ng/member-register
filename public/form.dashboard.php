@@ -54,17 +54,13 @@ $children = all('children');
                   <input type="hidden" name="id" value="<?= $adult->id ?>">
                   <input type="hidden" name="type" value="adults">
                   <button type="submit" class="btn red" id="delete" title="supprimer">
-                    <i class="icon icon-remove" style="font-size: smaller !important;">
-                      suppr
-                    </i>
+                    <i class="icon icon-user-times" style="font-size: smaller !important;"></i>
                   </button>
                 </form>
 
                 <a href="?list=adult&action=edit&id=<?= $adult->id ?>">
                   <button class="btn" title="editer">
-                    <i class="icon icon-edit" style="font-size: smaller !important;">
-                      editer
-                    </i>
+                    <i class="icon icon-user" style="font-size: smaller !important;"></i>
                   </button>
                 </a>
               </td>
@@ -78,7 +74,7 @@ $children = all('children');
               <td></td>
               <td>
                 <button type="submit" class="btn btn-small disabled">
-                  <i class="icon icon-remove" style="font-size: smaller !important;"></i>
+                  <i class="icon icon-user" style="font-size: smaller !important;"></i>
                 </button>
               </td>
             </tr>
@@ -95,9 +91,9 @@ $children = all('children');
           <thead>
             <tr>
               <th>id</th>
+              <th>image</th>
               <th>nom</th>
               <th>postnom</th>
-              <th>matricule</th>
               <th>actions</th>
             </tr>
           </thead>
@@ -114,17 +110,13 @@ $children = all('children');
                   <input type="hidden" name="id" value="<?= $child->id ?>">
                   <input type="hidden" name="type" value="children">
                   <button type="submit" class="btn red" id="delete" title="supprimer">
-                    <i class="icon icon-remove" style="font-size: smaller !important;">
-                      suppr
-                    </i>
+                    <i class="icon icon-user-times" style="font-size: smaller !important;"></i>
                   </button>
                 </form>
 
-                <a href="?list=enfant&action=editt&id=<?= $child->id ?>">
+                <a href="?list=enfant&action=edit&id=<?= $child->id ?>">
                   <button class="btn" title="editer">
-                    <i class="icon icon-edit" style="font-size: smaller !important;">
-                      editer
-                    </i>
+                    <i class="icon icon-user" style="font-size: smaller !important;"></i>
                   </button>
                 </a>
               </td>
@@ -133,7 +125,7 @@ $children = all('children');
             <?php else : ?>
             <tr>
               <td><b>0</b></td>
-              <td>Aucun adult pour l'instant</td>
+              <td>Aucun enfant pour l'instant</td>
               <td></td>
               <td></td>
               <td>
