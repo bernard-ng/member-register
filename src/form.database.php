@@ -49,7 +49,6 @@ function query($statement, $data = [], $fetchAll = true)
         $res = $fetchAll ? $req->fetchAll() : $req->fetch();
         return $res;
     } catch (PDOException $e) {
-        var_dump($e);
         die('Oups une erreur est survenu, veuillez réessayer');
         return null;
     }
