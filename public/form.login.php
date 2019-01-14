@@ -10,7 +10,7 @@ require_once(ROOT . "/src/form.process.php");
     <?= input('nom', 'Nom', 's12'); ?>
     <?= input('password', 'Mot de passe', 's12', 'password'); ?>
 
-    <div class="row">
+    <div class="col s12 row" style="margin-top: 20px;">
       <button class="btn blue white-text darken-4 waves-effect" style="display: block; width: 100%">
         Envoyer
       </button>
