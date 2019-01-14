@@ -1,8 +1,12 @@
 <?php
 require_once("../src/form.core.php");
+require_once(ROOT . "/src/form.database.php");
 
 $query = isset($_GET['q']) ? htmlspecialchars($_GET['q']) : false;
-$results = [];
+
+$adults = search($query, 'adults');
+$children = search($query, 'children');
+
 
 ?>
 <?php include(ROOT . "src/include/menu.php"); ?>
@@ -35,33 +39,76 @@ $results = [];
   <?php endif; ?>
   
   <?php if ($query) : ?>
-    <?php if (isset($results) && !empty($results)) : ?>
-    <div class="row col s12 white-text">
-      <h1 class="ui header">Résultat pour : " <?= $query ?> "</h1>
-    </div>
-
-      <?php foreach ($results as $result) : ?>
-        <div class="col s12 m3">
-          <div class="card grey ligth-2" style="text-align: center;">
-            <div class="card-content">
-              <span class="card-title" style="text-transform: capitalize;">
-                <?= "{$result->nom} {$result->postnom}" ?>
-              </span>
-              <div style="margin-top: -13px;">
-                <?= "{$result->prenom}" ?>
+    <div class="col s12" style="margin-top: 2em;">
+      <?php if (isset($adults) && !empty($adults) || isset($children) && !empty($children)) : ?>
+      <div class="row col s12 white-text">
+        <h1 class="ui header">Résultat pour : " <?= $query ?> "</h1>
+      </div>
+      <?php if (isset($adults) && !empty($adults)) : ?>
+        <div class="row">
+          <div class="col s12">
+            <h3 class="ui header">Adultes</h3>
+          </div>
+          <div class="divider"></div>
+          <?php foreach ($adults as $adult) : ?>
+            <div class="col s12 m3">
+              <div class="card" style="text-align: center;">
+                <div class="card-content">
+                  <span class="card-title" style="text-transform: capitalize;">
+                    <?= "{$adult->nom} {$adult->postnom}" ?>
+                  </span>
+                  <div style="margin-top: -13px;">
+                    <?= "{$adult->prenom}" ?>
+                  </div>
+                </div>
+                <div class="card-action">
+                  <center>
+                    <a href="form.dashboard.php?id=3">Voir</a>
+                    <a href="form.dashboard.php?id=3&action=edit">Editer</a>
+                  </center>
+                </div>
               </div>
             </div>
-            <div class="card-action">
-              <center>
-                <a href="form.dashboard.php?id=3">Voir</a>
-                <a href="form.dashboard.php?id=3&action=edit">Editer</a>
-              </center>
-            </div>
-          </div>
+          <?php endforeach; ?>
         </div>
-      <?php endforeach; ?>
+      <?php endif; ?>
+      
+
+      <?php if (isset($children) && !empty($children)) : ?>
+        <div class="row">
+          <div class="col s12">
+            <h3 class="ui header">Enfants</h3>
+          </div>
+          <div class="divider"></div>
+          <?php foreach ($children as $child) : ?>
+            <div class="col s12 m3">
+              <div class="card" style="text-align: center;">
+                <div class="card-image">
+                <img src="<?= $child->imageUrl ?>" alt="">
+                </div>
+                <div class="card-content">
+                  <span class="card-title" style="text-transform: capitalize;">
+                    <?= "{$child->nom} {$child->postnom}" ?>
+                  </span>
+                  <div style="margin-top: -13px;">
+                    <?= "{$child->prenom}" ?>
+                  </div>
+                </div>
+                <div class="card-action">
+                  <center>
+                    <a href="form.dashboard.php?id=3">Voir</a>
+                    <a href="form.dashboard.php?id=3&action=edit">Editer</a>
+                  </center>
+                </div>
+              </div>
+            </div>
+          <?php endforeach; ?>
+        </div>
+      <?php endif; ?>
+    </div>  
+
     <?php else : ?>
-    <div class="col s12 m12">
+    <div class="col s12">
       <div class="card">
         <div class="card-content">
           <span class="card-title ui header">Aucun Résultat</span>

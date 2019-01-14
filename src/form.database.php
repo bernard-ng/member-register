@@ -6,14 +6,14 @@ $db = function () {
     $db_password = "";
     $db_host = "localhost";
     $db_name = "church_members";
-  
+
     try {
         return new PDO("mysql:Host={$db_host};dbname={$db_name};charset=utf8", $db_user, $db_password, [
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
             PDO::ATTR_ORACLE_NULLS => PDO::NULL_EMPTY_STRING,
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ
         ]);
-    } catch(Exception $e) {
+    } catch (Exception $e) {
         die('Connexion impossible, pour l\'instant');
     }
 };
@@ -27,7 +27,8 @@ $db = function () {
  * @param boolean $fetchAll
  * @return mixed
  */
-function query($statement, $data = [], $fetchAll = true) {
+function query($statement, $data = [], $fetchAll = true)
+{
     global $db;
 
     try {
@@ -40,8 +41,7 @@ function query($statement, $data = [], $fetchAll = true) {
 
         if (strpos($statement, "INSERT") === 0 ||
             strpos($statement, "DELETE") === 0 ||
-            strpos($statement, "UPDATE") === 0
-        ) {
+            strpos($statement, "UPDATE") === 0) {
             return $req;
         }
 
@@ -61,7 +61,8 @@ function query($statement, $data = [], $fetchAll = true) {
  * @param string $table
  * @return mixed
  */
-function create($data, $table) {
+function create($data, $table)
+{
     $fields = [];
     $values = [];
     foreach ($data as $k => $v) {
@@ -81,7 +82,8 @@ function create($data, $table) {
  * @param string $table
  * @return mixed
  */
-function update($data, $id, $table) {
+function update($data, $id, $table)
+{
     $fields = [];
     $values = [];
     foreach ($data as $k => $v) {
@@ -100,7 +102,8 @@ function update($data, $id, $table) {
  * @param int $id
  * @return mixed
  */
-function delete($id, $table) {
+function delete($id, $table)
+{
     return query("DELETE FROM {$table} WHERE id = ?", [$id]);
 }
 
@@ -111,7 +114,8 @@ function delete($id, $table) {
  * @param integer $limit
  * @return mixed
  */
-function getLast($table, $limit = 4) {
+function getLast($table, $limit = 4)
+{
     return query("SELECT * FROM {$table} ORDER BY id DESC LIMIT {$limit}");
 }
 
@@ -122,7 +126,8 @@ function getLast($table, $limit = 4) {
  * @param string $table
  * @return mixed
  */
-function all($table) {
+function all($table)
+{
     return query("SELECT * FROM {$table} ORDER BY id DESC");
 }
 
@@ -134,6 +139,35 @@ function all($table) {
  * @param string $table
  * @return mixed
  */
-function find($id, $table) {
+function find($id, $table)
+{
     return query("SELECT * FROM {$table} WHERE id = ?", [$id], false);
+}
+
+
+/**
+ * make a search
+ *
+ * @param string $query
+ * @param string $table
+ * @return mixed
+ */
+function search($query, $table) {
+    $sql = '';
+    $data = [];
+    $words = explode(' ', $query);
+    foreach ($words as $key => $word) {
+        if (mb_strlen($word) < 3) {
+            unset($words[$key]);
+        }
+    }
+
+    foreach ($words as $key => $word) {
+        $data[] = "%{$word}%";
+        $sql .= ($key === 0) ?
+            "CONCAT({$table}.nom, {$table}.postnom, {$table}.prenom) LIKE ? " :
+            " OR CONCAT({$table}.nom, {$table}.postnom, {$table}.prenom) LIKE ?";
+    }
+
+    return query("SELECT {$table}.* FROM {$table} WHERE ({$sql}) ", $data);
 }
