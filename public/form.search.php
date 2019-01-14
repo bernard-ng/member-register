@@ -53,6 +53,9 @@ $children = search($query, 'children');
           <?php foreach ($adults as $adult) : ?>
             <div class="col s12 m3">
               <div class="card" style="text-align: center;">
+                <div class="card-image">
+                  <img src="<?= $adult->imageUrl ?>" alt="">
+                </div>
                 <div class="card-content">
                   <span class="card-title" style="text-transform: capitalize;">
                     <?= "{$adult->nom} {$adult->postnom}" ?>
@@ -63,8 +66,8 @@ $children = search($query, 'children');
                 </div>
                 <div class="card-action">
                   <center>
-                    <a href="form.dashboard.php?id=3">Voir</a>
-                    <a href="form.dashboard.php?id=3&action=edit">Editer</a>
+                    <a href="form.dashboard.php?id=<?= $adult->id ?>&list=adult">Voir</a>
+                    <a href="form.dashboard.php?id=<?= $adult->id ?>&list=adult&action=edit">Editer</a>
                   </center>
                 </div>
               </div>
@@ -84,7 +87,7 @@ $children = search($query, 'children');
             <div class="col s12 m3">
               <div class="card" style="text-align: center;">
                 <div class="card-image">
-                <img src="<?= $child->imageUrl ?>" alt="">
+                  <img src="<?= $child->imageUrl ?>" alt="">
                 </div>
                 <div class="card-content">
                   <span class="card-title" style="text-transform: capitalize;">
@@ -96,8 +99,8 @@ $children = search($query, 'children');
                 </div>
                 <div class="card-action">
                   <center>
-                    <a href="form.dashboard.php?id=3">Voir</a>
-                    <a href="form.dashboard.php?id=3&action=edit">Editer</a>
+                    <a href="form.dashboard.php?id=<?= $child->id ?>&list=children">Voir</a>
+                    <a href="form.dashboard.php?id=<?= $child->id ?>&list=children&action=edit">Editer</a>
                   </center>
                 </div>
               </div>

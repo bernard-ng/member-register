@@ -134,15 +134,15 @@ if ($selectedForm) {
         return $data;
       };
 
-      create($data($_POST), $table);
-      $id = $db()->lastInsertId();
-
       // file upload process
       if (hasUpload('image')) {
-        $isUploaded = upload($_FILES['image'], $table, $id);
+        $imageName = uniqid('laborne_');
+        $imageUrl = "images/{$table}/{$imageName}.jpg";
+        create(array_merge($data($_POST), compact('imageUrl')), $table);
+
+        $isUploaded = upload($_FILES['image'], $table, $imageName);
 
         if ($isUploaded) {
-          update(['imageUrl' => "images/{$table}/{$id}.jpg"], $id, $table);
           setFlash('success', getMsg('registration_success'));
           redirect();
         } else {
@@ -150,7 +150,6 @@ if ($selectedForm) {
           $errors = ['image' => getMsg('image_upload_failed')];
         }
       } else {
-        delete($id, $table);
         $errors = ['image' => getMsg('image_required')];
       }
     } else {

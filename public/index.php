@@ -107,7 +107,9 @@ require_once(ROOT . '/src/form.process.php');
               <span class="file-path-wrapper col s8 l8 m8" style="display: inline-block;" >
                   <input class="file-path" placeholder="..." type="text">
               </span>
-              <div data-action="show-uploaded-file"></div>
+              <span class="helper-text red-text">
+                <?= e('image'); ?>
+              </span>
             </div>
 
             <?= input('matricule', 'Matricule du père'); ?>
