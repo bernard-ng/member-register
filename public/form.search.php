@@ -3,9 +3,12 @@ require_once("../src/form.core.php");
 require_once(ROOT . "/src/form.database.php");
 
 $query = isset($_GET['q']) ? htmlspecialchars($_GET['q']) : false;
-
 $adults = search($query, 'adults');
 $children = search($query, 'children');
+
+if (empty($children) && empty($adults)) {
+  setFlash('warning', getMsg('search_failed'));
+}
 
 
 ?>
@@ -15,12 +18,7 @@ $children = search($query, 'children');
   <div class="card-panel">
     <h3 class="ui header">formulaire de recherche</h3>
     <section class="section">
-    <p>
-      Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
-      Totam iusto, ipsam eligendi accusamus reiciendis dignissimos 
-      necessitatibus saepe inventore sapiente! Porro harum rem ratione 
-      et repudiandae obcaecati id quae ducimus facere!
-    </p>
+    <p><?= getText('form.search'); ?></p>
     </section>
     <div class="row">
       <form action="" method="GET">
