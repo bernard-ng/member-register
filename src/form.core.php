@@ -119,6 +119,16 @@ function hasFlashes() {
 
 
 /**
+ * retrieve flashes
+ *
+ * @return array|null
+ */
+function getFlashes() {
+    return $_SESSION['flash'];
+}
+
+
+/**
  * unset a flashes in the session
  *
  * @return void
