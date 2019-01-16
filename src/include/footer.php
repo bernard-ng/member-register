@@ -2,5 +2,6 @@
     <strong>Developped by <a href="https://github.com/bernard-ng">bernard-ng</a></strong>
     </div>
   </main>
+  <?php include(ROOT . "src/include/flash.php"); ?>
 </body>
 </html>
