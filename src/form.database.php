@@ -163,12 +163,15 @@ function search($query, $table) {
         }
     }
 
-    foreach ($words as $key => $word) {
-        $data[] = "%{$word}%";
-        $sql .= ($key === 0) ?
-            "CONCAT({$table}.nom, {$table}.postnom, {$table}.prenom) LIKE ? " :
-            " OR CONCAT({$table}.nom, {$table}.postnom, {$table}.prenom) LIKE ?";
+    if (!empty($words)) {
+        foreach ($words as $key => $word) {
+            $data[] = "%{$word}%";
+            $sql .= ($key === 0) ?
+                "CONCAT({$table}.nom, {$table}.postnom, {$table}.prenom) LIKE ? " :
+                " OR CONCAT({$table}.nom, {$table}.postnom, {$table}.prenom) LIKE ?";
+        }
+    
+        return query("SELECT {$table}.* FROM {$table} WHERE ({$sql}) ", $data);
     }
-
-    return query("SELECT {$table}.* FROM {$table} WHERE ({$sql}) ", $data);
+    return null;
 }
