@@ -155,7 +155,7 @@ if ($selectedForm) {
       }
     } else {
       $errors = $v->getErrors();
-      setFlash('error', getMsg('registration_failed'));
+      setFlash('danger', getMsg('registration_failed'));
     }
   }
 }
@@ -187,15 +187,16 @@ if ($action && in_array($action, $actions)) {
           'nom' => 'Identifiant incorrecte',
           'password' => 'Identifiant incorrecte'
         ];
-        setFlash('error', getMsg('login_failed'));
+        setFlash('danger', getMsg('login_failed'));
       } else {
         $errors = $v->getErrors();
-        setFlash('error', getMsg('login_failed'));
+        setFlash('danger', getMsg('login_failed'));
       }
       break;
 
     case 'logout':
       unset($_SESSION['isLogged']);
+      setFlash('success', getMsg('logout'));
       redirect('login');
       break;
 
@@ -212,7 +213,7 @@ if ($action && in_array($action, $actions)) {
             setFlash('success', getMsg('delete_success'));
           }
 
-          setFlash('error', getMsg('delete_failed'));
+          setFlash('danger', getMsg('delete_failed'));
         }
       }
       break;
