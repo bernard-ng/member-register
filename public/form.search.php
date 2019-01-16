@@ -12,38 +12,39 @@ $children = search($query, 'children');
 <?php include(ROOT . "src/include/menu.php"); ?>
 <section class="row">
 <?php if (!$query) : ?>
-    <div class="card-panel">
-      <h3 class="ui header">formulaire de recherche</h3>
-      <section class="section">
-      <p>
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
-        Totam iusto, ipsam eligendi accusamus reiciendis dignissimos 
-        necessitatibus saepe inventore sapiente! Porro harum rem ratione 
-        et repudiandae obcaecati id quae ducimus facere!
-      </p>
-      </section>
-      <div class="row">
-        <form action="" method="GET">
-          <div class="input-field">
-            <span class="col l12 m12 s12" style="display: block;" >
-              <input name="q" placeholder="recherches..." type="search" class="validate">
-            </span>
-          </div>
-          <br><br><br>
-          <div class="col s12">
-            <button class="btn blue" type="submit">Rechercher</button>
-          </div>
-        </form>
-      </div>
+  <div class="card-panel">
+    <h3 class="ui header">formulaire de recherche</h3>
+    <section class="section">
+    <p>
+      Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+      Totam iusto, ipsam eligendi accusamus reiciendis dignissimos 
+      necessitatibus saepe inventore sapiente! Porro harum rem ratione 
+      et repudiandae obcaecati id quae ducimus facere!
+    </p>
+    </section>
+    <div class="row">
+      <form action="" method="GET">
+        <div class="input-field">
+          <span class="col l12 m12 s12" style="display: block;" >
+            <input name="q" placeholder="recherches..." type="search" class="validate">
+          </span>
+        </div>
+        <br><br><br>
+        <div class="col s12">
+          <button class="btn blue" type="submit">Rechercher</button>
+        </div>
+      </form>
     </div>
-  <?php endif; ?>
+  </div>
+<?php endif; ?>
   
-  <?php if ($query) : ?>
+<?php if ($query) : ?>
+  <?php if (isset($adults) && !empty($adults) || isset($children) && !empty($children)) : ?>
     <div class="col s12" style="margin-top: 2em;">
-      <?php if (isset($adults) && !empty($adults) || isset($children) && !empty($children)) : ?>
       <div class="row col s12 white-text">
         <h1 class="ui header">Résultat pour : " <?= $query ?> "</h1>
       </div>
+
       <?php if (isset($adults) && !empty($adults)) : ?>
         <div class="row">
           <div class="col s12">
@@ -75,8 +76,7 @@ $children = search($query, 'children');
           <?php endforeach; ?>
         </div>
       <?php endif; ?>
-      
-
+    
       <?php if (isset($children) && !empty($children)) : ?>
         <div class="row">
           <div class="col s12">
@@ -108,18 +108,15 @@ $children = search($query, 'children');
           <?php endforeach; ?>
         </div>
       <?php endif; ?>
-    </div>  
-
-    <?php else : ?>
-    <div class="col s12">
-      <div class="card">
-        <div class="card-content">
-          <span class="card-title ui header">Aucun Résultat</span>
-          <p> Aucun résultat pour : <strong>&quot; <?= $query ?> &quot;</strong> ,
-          verifiez l'orthographe puis réessayez.</p>
-          <div class="divider"></div>
-          <a href="?q=" class="btn blue">Nouvelle recherche</a>
-        </div>
+    </div>
+  <?php else : ?>
+    <div class="card">
+      <div class="card-content">
+        <span class="card-title ui header">Aucun Résultat</span>
+        <p> Aucun résultat pour : <strong>&quot; <?= $query ?> &quot;</strong> ,verifiez l'orthographe puis réessayez.
+        <br>les mots de moins de 3 caractères sont ignorés par la recherche.</p>
+        <div class="divider"></div>
+        <a href="?q=" class="btn blue">Nouvelle recherche</a>
       </div>
     </div>
   <?php endif; ?>
