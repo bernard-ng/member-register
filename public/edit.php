@@ -36,7 +36,7 @@ if (isset($_SESSION['data']) && !empty($_SESSION['data'])) {
             <li class="collection-item"><strong><?= $k ?></strong> : <?= $v ?></li>
           <?php endforeach; ?>
         </ul>
-        <button class="btn blue darken-4">Télécharger (.csv)</button>
+        <button class="btn darken-4">Télécharger (.csv)</button>
       </div>
     </div>
 
@@ -89,7 +89,7 @@ if (isset($_SESSION['data']) && !empty($_SESSION['data'])) {
           </div>
 
           <div class="row">
-            <button class="btn blue white-text darken-4 waves-effect" style="display: block; width: 100%">
+            <button class="btn white-text darken-4 waves-effect" style="display: block; width: 100%">
               Envoyer
             </button>
           </div>
@@ -133,7 +133,7 @@ if (isset($_SESSION['data']) && !empty($_SESSION['data'])) {
           </div>
 
           <div class="row">
-            <button class="btn blue white-text darken-3 waves-effect" style="display: block; width: 100%">
+            <button class="btn white-text darken-3 waves-effect" style="display: block; width: 100%">
               Envoyer
             </button>
           </div>

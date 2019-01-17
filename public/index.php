@@ -11,10 +11,17 @@ require_once(ROOT . '/src/process.php');
       <p><?= _tl('form.choose.text'); ?></p>
     </section>
     <div class="divider"></div>
-    <div class="row">
-      <a href="?type=adult" class="col s5 btn grey darken-3 white-text"><?= _tl('adults'); ?></a>
-      <div class="col s2"></div>
-      <a href="?type=children" class="col s5 btn grey darken-3 white-text"><?= _tl('children'); ?></a>
+    <a href="#chooseForm" class="btn modal-trigger"><?= _tl('form.choose.action') ?></a>
+  </div>
+
+  <div id="chooseForm" class="modal bottom-sheet">
+    <div class="container modal-content" style="margin-top: 25px;">
+      <h3 class="ui header">Identification en tant que :</h3>
+      <div class="row">
+        <a href="?type=adult" class="col s5 btn grey darken-3 white-text"><?= _tl('adults'); ?></a>
+        <div class="col s2"></div>
+        <a href="?type=children" class="col s5 btn grey darken-3 white-text"><?= _tl('children'); ?></a>
+      </div>
     </div>
   </div>
 <?php endif; ?>
@@ -22,15 +29,15 @@ require_once(ROOT . '/src/process.php');
 <?php if ($selectedForm): ?>
   <div class="card-panel">
     <?php if ($selectedForm === 'adult') : ?>
-      <h3 class="ui header"><? _tl('form.adults') ?></h3>
+      <h3 class="ui header"><?= _tl('form.adults') ?></h3>
       <div>
         <form action="" method="post" id="adult" enctype="multipart/form-data">
           <div class="row">
             <fieldset>
 
             <div class="file-field input-field col s12">
-              <span class="btn blue-grey darken-1 waves-effect waves-light col s4 m4 l4" style="display: inline-block;">
-                  <span>Choisier une Photo</span>
+              <span class="btn darken-1 waves-effect waves-light col s4 m4 l4" style="display: inline-block;">
+                  <span><?= _tl('form.choose.file'); ?></span>
                   <input type="file" name="image" accept="image">
               </span>
               <span class="file-path-wrapper col s8 l8 m8" style="display: inline-block;" >
@@ -41,18 +48,18 @@ require_once(ROOT . '/src/process.php');
               </span>
             </div>
 
-              <?= input('matricule', 'Matricule', 'm6 s12 r'); ?>
-              <?= input('numeroCarte', 'N<sup>o</sup> carte de Membre', 'm6 s12 r'); ?>
+              <?= input('matricule', 'Matricule', 'm6 s12'); ?>
+              <?= input('numeroCarte', 'N<sup>o</sup> carte de Membre', 'm6 s12'); ?>
               <?= input('prenom', '* Prénom', 'm4 s12'); ?>
-              <?= input('nom', '* Nom', 'm4 s12 r'); ?>
+              <?= input('nom', '* Nom', 'm4 s12'); ?>
               <?= input('postnom', '* Postnom', 'm4 s12'); ?>
               <?= input('telephone1', 'Téléphone (1)'); ?>
               <?= input('telephone2', 'Téléphone (2)'); ?>
               <?= input('email', 'Adresse Email', 's12', 'email') ?>
               
               <?= input('sexe', '* sexe (M ou F)', 's12') ?>
-              <?= input('lieuNaissance', '* Lieu de naissance', 'm6 s12 r'); ?>
-              <?= input('dateNaissance', '* Date de naissance', 'm6 s12 r'); ?>
+              <?= input('lieuNaissance', '* Lieu de naissance', 'm6 s12'); ?>
+              <?= input('dateNaissance', '* Date de naissance', 'm6 s12'); ?>
 
               <?= input('lieuBapteme', 'Lieu de bapteme', 'm6 s12'); ?>
               <?= input('dateBapteme', 'Date de bapteme', 'm6 s12'); ?>
@@ -60,9 +67,9 @@ require_once(ROOT . '/src/process.php');
               <?= input('niveauEtude', "* Niveau d'études", 's12'); ?>
 
               <?= input('adresse', "* Adresse Physique", 's12'); ?>
-              <?= input('ville', "* Ville", 'm4 s12 r'); ?>
-              <?= input('commune', "* Commune", 'm4 s12 r'); ?>
-              <?= input('quartier', "* Quartier", 'm4 s12 r'); ?>
+              <?= input('ville', "* Ville", 'm4 s12'); ?>
+              <?= input('commune', "* Commune", 'm4 s12'); ?>
+              <?= input('quartier', "* Quartier", 'm4 s12'); ?>
             </fieldset>
 
             
@@ -83,7 +90,7 @@ require_once(ROOT . '/src/process.php');
           </div>
 
           <div class="row">
-            <button class="btn blue white-text darken-3 waves-effect" style="display: block; width: 100%">
+            <button class="btn white-text darken-3 waves-effect" style="display: block; width: 100%">
               <?= _tl('send'); ?>
             </button>
           </div>
@@ -98,7 +105,7 @@ require_once(ROOT . '/src/process.php');
           <div class="row">
 
             <div class="file-field input-field col s12">
-              <span class="btn blue-grey darken-1 waves-effect waves-light col s4 m4 l4" style="display: inline-block;">
+              <span class="btn darken-1 waves-effect waves-light col s4 m4 l4" style="display: inline-block;">
                   <span><?= _tl('form.choose.file') ?></span>
                   <input type="file" name="image">
               </span>
@@ -144,7 +151,7 @@ require_once(ROOT . '/src/process.php');
           </div>
 
           <div class="row">
-            <button class="btn blue white-text darken-3 waves-effect" style="display: block; width: 100%">
+            <button class="btn white-text darken-3 waves-effect" style="display: block; width: 100%">
               <?= _tl('send'); ?>
             </button>
           </div>

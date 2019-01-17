@@ -30,11 +30,9 @@ $(document).ready(function () {
   });
   $('.parallax').parallax();
   $('.modal').modal({
-    opacity: 0.5,
-    dismissible: false,
+    dismissible: true,
     outDuration: 150,
     inDuration: 150,
-    preventScrolling: false
   });
   $('.tabs').tabs();
   $('select').material_select();

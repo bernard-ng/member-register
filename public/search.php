@@ -29,7 +29,7 @@ if (empty($children) && empty($adults)) {
         </div>
         <br><br><br>
         <div class="col s12">
-          <button class="btn blue" type="submit">Rechercher</button>
+          <button class="btn" type="submit">Rechercher</button>
         </div>
       </form>
     </div>
@@ -114,7 +114,7 @@ if (empty($children) && empty($adults)) {
         <p> Aucun résultat pour : <strong>&quot; <?= $query ?> &quot;</strong> ,verifiez l'orthographe puis réessayez.
         <br>les mots de moins de 3 caractères sont ignorés par la recherche.</p>
         <div class="divider"></div>
-        <a href="?q=" class="btn blue">Nouvelle recherche</a>
+        <a href="?q=" class="btn">Nouvelle recherche</a>
       </div>
     </div>
   <?php endif; ?>

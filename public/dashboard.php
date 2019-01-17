@@ -14,15 +14,15 @@ $children = all('children');
 <section class="row">
   <?php if (!$list) : ?>
     <div class="row card-panel">
-      <h3 class="ui header">Liste des Membres</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error omnis nihil veniam ea, perspiciatis porro temporibus enim molestias eveniet nesciunt tempore dolore tempora iure. Officia eum aliquam a odit autem.</p>
-        <a href="?list=adult" class="btn blue darken-4">voir plus</a>
+      <h3 class="ui header"><?= _tl('list.adults.title'); ?></h3>
+        <p><?= _tl('list.adults.text'); ?></p>
+        <a href="?list=adult" class="btn darken-4"><?= _tl('see more'); ?></a>
         <br><br>
       <div class="divider"></div>
 
-      <h3 class="ui header">Liste des enfants</h3>
-        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatum voluptate, corporis sunt facilis cumque, aliquid alias sapiente culpa esse hic dignissimos iure placeat suscipit non rem molestiae, voluptatibus veritatis assumenda.</p>
-        <a href="?list=enfant" class="btn blue darken-4">voir plus</a>
+      <h3 class="ui header"><?= _tl('list.children.title'); ?></h3>
+        <p><?= _tl('list.children.text'); ?></p>
+        <a href="?list=enfant" class="btn darken-4"><?= _tl('see more'); ?></a>
         <br>
     </div>
   <?php endif; ?>
@@ -30,7 +30,7 @@ $children = all('children');
   <?php if ($list) : ?>
     <?php if ($list == 'adult') : ?>
       <div class="card-panel row">
-        <h3 class="ui header">Les Membres</h3>
+        <h3 class="ui header"><?= _tl('list.adults.title') ?></h3>
         <table class="table bordered striped">
           <thead>
             <tr>
@@ -69,7 +69,7 @@ $children = all('children');
             <?php else : ?>
             <tr>
               <td><b>0</b></td>
-              <td>Aucun adult pour l'instant</td>
+              <td><?= _tl('list.adult.empty'); ?></td>
               <td></td>
               <td></td>
               <td>
@@ -86,7 +86,7 @@ $children = all('children');
 
     <?php if ($list == 'enfant') : ?>
       <div class="card-panel row">
-        <h3 class="ui header">Les Enfants</h3>
+        <h3 class="ui header"><?= _tl('list.children.title') ?></h3>
         <table class="table bordered striped">
           <thead>
             <tr>
@@ -125,7 +125,7 @@ $children = all('children');
             <?php else : ?>
             <tr>
               <td><b>0</b></td>
-              <td>Aucun enfant pour l'instant</td>
+              <td><?= _tl('list.children.empty') ?></td>
               <td></td>
               <td></td>
               <td>
