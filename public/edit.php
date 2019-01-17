@@ -22,7 +22,7 @@ if (isset($_SESSION['data']) && !empty($_SESSION['data'])) {
   $r = find($id, $table);
   unset($_SESSION['data']);
 } else {
-  setFlash('error', getMsg('failed'));
+  setFlash('danger', getMsg('failed'));
   redirect('dashboard');
 }
 ?>
