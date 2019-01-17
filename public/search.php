@@ -1,6 +1,6 @@
 <?php
-require_once("../src/form.core.php");
-require_once(ROOT . "/src/form.database.php");
+require_once("../src/core.php");
+require_once(ROOT . "/src/database.php");
 
 $query = isset($_GET['q']) ? htmlspecialchars($_GET['q']) : false;
 $adults = search($query, 'adults');
@@ -65,8 +65,8 @@ if (empty($children) && empty($adults)) {
                 </div>
                 <div class="card-action">
                   <center>
-                    <a href="form.dashboard.php?id=<?= $adult->id ?>&list=adult">Voir</a>
-                    <a href="form.dashboard.php?id=<?= $adult->id ?>&list=adult&action=edit">Editer</a>
+                    <a href="dashboard.php?id=<?= $adult->id ?>&list=adult">Voir</a>
+                    <a href="dashboard.php?id=<?= $adult->id ?>&list=adult&action=edit">Editer</a>
                   </center>
                 </div>
               </div>
@@ -97,8 +97,8 @@ if (empty($children) && empty($adults)) {
                 </div>
                 <div class="card-action">
                   <center>
-                    <a href="form.dashboard.php?id=<?= $child->id ?>&list=children">Voir</a>
-                    <a href="form.dashboard.php?id=<?= $child->id ?>&list=children&action=edit">Editer</a>
+                    <a href="dashboard.php?id=<?= $child->id ?>&list=children">Voir</a>
+                    <a href="dashboard.php?id=<?= $child->id ?>&list=children&action=edit">Editer</a>
                   </center>
                 </div>
               </div>

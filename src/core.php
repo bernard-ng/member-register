@@ -107,7 +107,7 @@ app_core_func : {
             header("Location: index.php");
             exit();
         }
-        header("Location: form.{$file}.php{$option}");
+        header("Location: {$file}.php{$option}");
         exit();
     }
 

@@ -1,22 +1,20 @@
 <?php
-require_once('../src/form.core.php'); 
-require_once(ROOT . '/src/form.process.php'); 
+require_once('../src/core.php'); 
+require_once(ROOT . '/src/process.php'); 
 
 ?>
 <?php include(ROOT . "/src/include/menu.php"); ?>
 <?php if(!$selectedForm): ?>
   <div class="card-panel">
-    <h3 class="ui header">Choix du formulaire</h3>
+    <h3 class="ui header"><?= _tl('form.choose.title') ?></h3>
     <section class="section">
-    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
-    Optio repudiandae incidunt dolorem expedita fugit quos! Rerum maxime, aliquid reiciendis fuga 
-    ipsam eum excepturi animi cupiditate adipisci rem aliquam obcaecati eos.</p>
+      <p><?= _tl('form.choose.text'); ?></p>
     </section>
     <div class="divider"></div>
     <div class="row">
-      <a href="?type=adult" class="col s5 btn grey darken-3 white-text">Adultes</a>
+      <a href="?type=adult" class="col s5 btn grey darken-3 white-text"><?= _tl('adults'); ?></a>
       <div class="col s2"></div>
-      <a href="?type=children" class="col s5 btn grey darken-3 white-text">Enfants</a>
+      <a href="?type=children" class="col s5 btn grey darken-3 white-text"><?= _tl('children'); ?></a>
     </div>
   </div>
 <?php endif; ?>
@@ -24,7 +22,7 @@ require_once(ROOT . '/src/form.process.php');
 <?php if ($selectedForm): ?>
   <div class="card-panel">
     <?php if ($selectedForm === 'adult') : ?>
-      <h3 class="ui header">Formulaire d'indentification des adults de l'église la borne lushi</h3>
+      <h3 class="ui header"><? _tl('form.adults') ?></h3>
       <div>
         <form action="" method="post" id="adult" enctype="multipart/form-data">
           <div class="row">
@@ -43,25 +41,25 @@ require_once(ROOT . '/src/form.process.php');
               </span>
             </div>
 
-              <?= input('matricule', '* Matricule', 'm6 s12 r'); ?>
-              <?= input('numeroCarte', '* N<sup>o</sup> carte de Membre', 'm6 s12 r'); ?>
-              <?= input('prenom', '* Prénom adult', 'm4 s12 r'); ?>
-              <?= input('nom', '* Nom adult', 'm4 s12 r'); ?>
-              <?= input('postnom', '* Postnom', 'm4 s12 r'); ?>
+              <?= input('matricule', 'Matricule', 'm6 s12 r'); ?>
+              <?= input('numeroCarte', 'N<sup>o</sup> carte de Membre', 'm6 s12 r'); ?>
+              <?= input('prenom', '* Prénom', 'm4 s12'); ?>
+              <?= input('nom', '* Nom', 'm4 s12 r'); ?>
+              <?= input('postnom', '* Postnom', 'm4 s12'); ?>
               <?= input('telephone1', 'Téléphone (1)'); ?>
               <?= input('telephone2', 'Téléphone (2)'); ?>
               <?= input('email', 'Adresse Email', 's12', 'email') ?>
               
-              <?= input('sexe', '* sexe (M ou F)', 's12 r') ?>
+              <?= input('sexe', '* sexe (M ou F)', 's12') ?>
               <?= input('lieuNaissance', '* Lieu de naissance', 'm6 s12 r'); ?>
               <?= input('dateNaissance', '* Date de naissance', 'm6 s12 r'); ?>
 
               <?= input('lieuBapteme', 'Lieu de bapteme', 'm6 s12'); ?>
               <?= input('dateBapteme', 'Date de bapteme', 'm6 s12'); ?>
-              <?= input('dateAdhesion', "* Date d'adhesion", 's12 r'); ?>
-              <?= input('niveauEtude', "* Niveau d'études", 's12 r'); ?>
+              <?= input('dateAdhesion', "* Date d'adhesion", 's12'); ?>
+              <?= input('niveauEtude', "* Niveau d'études", 's12'); ?>
 
-              <?= input('adresse', "* Adresse Physique", 's12 r'); ?>
+              <?= input('adresse', "* Adresse Physique", 's12'); ?>
               <?= input('ville', "* Ville", 'm4 s12 r'); ?>
               <?= input('commune', "* Commune", 'm4 s12 r'); ?>
               <?= input('quartier', "* Quartier", 'm4 s12 r'); ?>
@@ -86,7 +84,7 @@ require_once(ROOT . '/src/form.process.php');
 
           <div class="row">
             <button class="btn blue white-text darken-3 waves-effect" style="display: block; width: 100%">
-              Envoyer
+              <?= _tl('send'); ?>
             </button>
           </div>
         </form>
@@ -94,14 +92,14 @@ require_once(ROOT . '/src/form.process.php');
     <?php endif; ?>
 
     <?php if ($selectedForm === 'children') : ?>
-    <h3 class="ui header">Formulaire d'indentification des enfants de l'église la borne lushi</h3>
+    <h3 class="ui header"><?= _tl('form.children'); ?></h3>
       <div>
         <form action="" method="post" id="child" enctype="multipart/form-data">
           <div class="row">
 
             <div class="file-field input-field col s12">
               <span class="btn blue-grey darken-1 waves-effect waves-light col s4 m4 l4" style="display: inline-block;">
-                  <span>Choisier une Photo</span>
+                  <span><?= _tl('form.choose.file') ?></span>
                   <input type="file" name="image">
               </span>
               <span class="file-path-wrapper col s8 l8 m8" style="display: inline-block;" >
@@ -113,19 +111,19 @@ require_once(ROOT . '/src/form.process.php');
             </div>
 
             <?= input('matricule', 'Matricule du père'); ?>
-            <?= input('numeroCarte', 'N<sup>0</sup> Carte de adult'); ?>
-            <?= input('nomsPere', 'Nom / Prénom / Postnom du Père', 's12'); ?>
-            <?= input('nomsMere', 'Nom / Prénom / Postnom du Mère', 's12'); ?>
+            <?= input('numeroCarte', 'N<sup>0</sup> Carte de Membre'); ?>
+            <?= input('nomsPere', '* Nom / Prénom / Postnom du Père', 's12'); ?>
+            <?= input('nomsMere', '* Nom / Prénom / Postnom du Mère', 's12'); ?>
 
-            <?= input('nom', 'Nom de l\'enfant', 'm4 s12'); ?>
-            <?= input('prenom', 'Prénom de l\'enfant', 'm4 s12'); ?>
-            <?= input('postnom', 'Postnom de l\'enfant', 'm4 s12'); ?>
+            <?= input('nom', '* Nom de l\'enfant', 'm4 s12'); ?>
+            <?= input('prenom', '* Prénom de l\'enfant', 'm4 s12'); ?>
+            <?= input('postnom', '* Postnom de l\'enfant', 'm4 s12'); ?>
 
-            <?= input('lieuNaissance', 'Lieu de naissance'); ?>
-            <?= input('dateNaissance', 'Date de naissance'); ?>
-            <?= input('adresse', 'Adresse complète', 's12'); ?>
-            <?= input('commune', 'Commune', 'm6 s12'); ?>
-            <?= input('quartier', 'Quartier', 'm6 s12'); ?>
+            <?= input('lieuNaissance', '* Lieu de naissance'); ?>
+            <?= input('dateNaissance', '* Date de naissance'); ?>
+            <?= input('adresse', '* Adresse complète', 's12'); ?>
+            <?= input('commune', '* Commune', 'm6 s12'); ?>
+            <?= input('quartier', '* Quartier', 'm6 s12'); ?>
 
             <?= input('nomEcole', 'Nom de l\'école'); ?>
             <?= input('classe', 'Classe'); ?>
@@ -147,7 +145,7 @@ require_once(ROOT . '/src/form.process.php');
 
           <div class="row">
             <button class="btn blue white-text darken-3 waves-effect" style="display: block; width: 100%">
-              Envoyer
+              <?= _tl('send'); ?>
             </button>
           </div>
         </form>

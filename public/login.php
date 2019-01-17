@@ -1,6 +1,6 @@
 <?php
-require_once("../src/form.core.php");
-require_once(ROOT . "/src/form.process.php");
+require_once("../src/core.php");
+require_once(ROOT . "/src/process.php");
 
 ?>
 <?php include(ROOT . "src/include/menu.php"); ?>

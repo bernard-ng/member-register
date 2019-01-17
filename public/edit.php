@@ -1,7 +1,7 @@
 <?php
-require_once("../src/form.core.php");
-require_once(ROOT . "/src/form.database.php");
-require_once(ROOT . "/src/form.process.php");
+require_once("../src/core.php");
+require_once(ROOT . "/src/database.php");
+require_once(ROOT . "/src/process.php");
 
 loggedOnly();
 

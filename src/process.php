@@ -3,8 +3,8 @@
 use Awurth\SlimValidation\Validator;
 
 require_once("../vendor/autoload.php");
-require_once("form.core.php");
-require_once("form.alidation.php");
+require_once("core.php");
+require_once("validation.php");
 
 
 /**
@@ -105,7 +105,9 @@ form_helpers : {
 form_registration_process : {
 
   // Selection du formulaire et definition de la table d'enregistrement
-  $selectedForm = (isset($_GET['type'])) ? strval($_GET['type']) : false;
+  $type = isset($_GET['type']) ? htmlspecialchars(strval($_GET['type'])) : false;
+  $types = ['adult', 'children'];
+  $selectedForm = ($type && in_array($type, $types)) ? $type : false;
   $selectedFormType = ($selectedForm) ? "des {$selectedForm}s" : '';
   $errors = [];
 
@@ -124,8 +126,8 @@ form_registration_process : {
 
     if (isPosted()) {
       global $db;
-      require_once("form.image.php");
-      require_once("form.database.php");
+      require_once("image.php");
+      require_once("database.php");
 
       $v = (new Validator(false))->validate($_POST, $rules);
 
